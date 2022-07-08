@@ -1,16 +1,63 @@
-html,
-body {
+:root {
+  /* Colors */
+  --color-background-white: #fff;
+  --color-background-grey: #c1c7c7;
+
+  -color-font-main: #0f141e;
+  -color-font-light-1: #4c4e51;
+  -color-font-light-2: #72767a;
+  -color-font-light-3: #878a8e;
+
+  --color-dominant-darker: #5d6767;
+  --color-domiannt: #c1c7c7;
+  --color-dominant-lighter: #e0e3e3;
+
+  /* Font-size */
+  --font-size-xs: 1.2rem;
+  --font-size-0: 1.6rem;
+  --font-size-1: 2rem;
+  --font-size-2: 2.5rem;
+  --font-size-3: 3.1rem;
+  --font-size-4: 3.9rem;
+  --font-size-5: 4.9rem;
+  --font-size-6: 6.1rem;
+  --font-size-7: 7.6rem;
+  --font-size-8: 9.5rem;
+
+  /* Font-weight */
+  --font-weight-0: 400;
+  --font-weight-1: 500;
+  --font-weight-2: 600;
+  --font-weight-3: 700;
+  --font-weight-4: 800;
+}
+
+*,
+*::before,
+**::after {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  box-sizing: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: var(--font-size-0);
+  font-family: "Nunito", sans-serif;
+  font-weight: var(--font-weight-0);
+  background-color: var(--color-background-white);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+  color: currentColor;
 }

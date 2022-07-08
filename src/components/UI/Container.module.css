@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media only screen and (min-width: 36em) {
+  .container {
+    width: 54rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .container {
+    width: 72rem;
+  }
+}
+
+@media only screen and (min-width: 62em) {
+  .container {
+    width: 96rem;
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  .container {
+    width: 114rem;
+  }
+}
+
+@media only screen and (min-width: 87.5em) {
+  .container {
+    width: 136rem;
+  }
+}

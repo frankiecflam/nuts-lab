@@ -3,10 +3,19 @@ import { FC } from "react";
 
 interface ContainerProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-const Container: FC<ContainerProps> = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+const Container: FC<ContainerProps> = ({ children, className }) => {
+  return (
+    <div
+      className={
+        className ? `${styles.container} ${className}` : styles.container
+      }
+    >
+      {children}
+    </div>
+  );
 };
 
 export default Container;

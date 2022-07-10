@@ -1,0 +1,8 @@
+.item {
+  font-size: inherit;
+  color: inherit;
+}
+
+.item::first-letter {
+  text-transform: uppercase;
+}

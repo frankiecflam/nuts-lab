@@ -1,8 +1,10 @@
 import styles from "./Header.module.css";
-import HeaderNavBrand from "./HeaderNavBrand";
-import HeaderNavList from "./HeaderNavList";
-import HeaderNavActions from "./HeaderNavActions";
-import HeaderMobile from "./HeaderMobile";
+import {
+  HeaderNavList,
+  HeaderNavActions,
+  HeaderNavBrand,
+  HeaderMobile,
+} from "./index";
 
 import { useState } from "react";
 

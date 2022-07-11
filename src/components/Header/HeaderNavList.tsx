@@ -1,5 +1,5 @@
 import styles from "./HeaderNavList.module.css";
-import HeaderNavItem from "./HeaderNavItem";
+import { HeaderNavItem } from "./index";
 
 interface HeaderNavListProps {
   mobileActive: boolean;

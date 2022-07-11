@@ -1,0 +1,23 @@
+.reviews {
+  list-style: none;
+  position: relative;
+  height: 40rem;
+}
+
+.slideLeft,
+.slideRight {
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  top: 30%;
+  font-size: var(--font-size-2);
+  fill: var(--color-font-light-2);
+}
+
+.slideLeft {
+  left: 5%;
+}
+
+.slideRight {
+  right: 5%;
+}

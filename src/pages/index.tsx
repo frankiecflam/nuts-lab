@@ -1,6 +1,11 @@
 import Head from "next/head";
 import type { NextPage, GetStaticProps } from "next";
-import { Hero, TopPicks, Features } from "../components/Home/index";
+import {
+  Hero,
+  TopPicks,
+  Features,
+  Testimonials,
+} from "../components/Home/index";
 import { getTopPicks } from "../utils/helpers/index";
 import { Product } from "../types/index";
 
@@ -21,6 +26,7 @@ const Home: NextPage<HomeProps> = ({ topPicks }) => {
       <Hero />
       <TopPicks topPicks={topPicks} />
       <Features />
+      <Testimonials />
     </div>
   );
 };

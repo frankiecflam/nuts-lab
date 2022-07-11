@@ -5,3 +5,6 @@ export { default as Instafeed_1 } from "./Instafeed_1_1920x2880.webp";
 export { default as Instafeed_2 } from "./Instafeed_2_1920x2880.webp";
 export { default as Instafeed_3 } from "./Instafeed_3_1920x2880.webp";
 export { default as Instafeed_4 } from "./Instafeed_4_1920x2880.webp";
+export { default as Customer_1 } from "./Customer_1.jpg";
+export { default as Customer_2 } from "./Customer_2.jpg";
+export { default as Customer_3 } from "./Customer_3.jpg";

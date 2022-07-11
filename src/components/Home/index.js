@@ -5,3 +5,5 @@ export { default as Features } from "./Features";
 export { default as Testimonials } from "./Testimonials";
 export { default as TestimonialsList } from "./TestimonialsList";
 export { default as TestimonialsItem } from "./TestimonialsItem";
+export { default as InstagramFeed } from "./InstagramFeed";
+export { default as InstagramFeedItem } from "./InstagramFeedItem";

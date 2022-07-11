@@ -5,6 +5,7 @@ import {
   TopPicks,
   Features,
   Testimonials,
+  InstagramFeed,
 } from "../components/Home/index";
 import { getTopPicks } from "../utils/helpers/index";
 import { Product } from "../types/index";
@@ -27,6 +28,7 @@ const Home: NextPage<HomeProps> = ({ topPicks }) => {
       <TopPicks topPicks={topPicks} />
       <Features />
       <Testimonials />
+      <InstagramFeed />
     </div>
   );
 };

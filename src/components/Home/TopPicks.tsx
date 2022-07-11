@@ -1,4 +1,3 @@
-import styles from "./TopPicks.module.css";
 import { Section, SectionHeader, SectionBody } from "../Section/index";
 import Container from "../UI/Container";
 import { Product } from "../../types";

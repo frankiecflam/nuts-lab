@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 10rem;
+  row-gap: 8rem;
 }
 
 .reviewHeader {
@@ -34,6 +34,7 @@
 
 .customerName {
   color: var(--color-font-light-3);
+  text-transform: capitalize;
 }
 
 .reviewBody {

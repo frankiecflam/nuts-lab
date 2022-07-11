@@ -1,7 +1,7 @@
 .heading {
   text-transform: uppercase;
-  color: var(--color-font-light-1);
-  font-weight: 500;
+  color: var(--color-font-light-3);
+  font-weight: 400;
   letter-spacing: 0.25rem;
   font-size: var(--font-size-1);
   text-align: center;

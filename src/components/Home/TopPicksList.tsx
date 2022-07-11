@@ -11,6 +11,7 @@ const TopPicksList = ({ topPicks }: TopPicksListProps) => {
     <ul className={styles.list}>
       {topPicks.map((topPick) => (
         <ProductItem
+          key={topPick.id}
           id={topPick.id}
           title={topPick.title}
           href="/"

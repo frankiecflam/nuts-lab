@@ -1,16 +1,22 @@
 import styles from "./TestimonialsList.module.css";
 import { Customer_1, Customer_2, Customer_3 } from "../../assets/Images/Home";
 import { TestimonialsItem } from "./index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LeftArrowIcon, RightArrowIcon } from "../../assets/Icons";
-
-const POSITION_CONSTRAINTS = {
-  max: 2,
-  min: 0,
-};
+import POSITION_CONSTRAINTS from "../../utils/constants/slidingPosition";
 
 const TestimonialsList = () => {
   const [currentSlidingPosition, setCurrentSlidingPosition] = useState(0);
+
+  useEffect(() => {
+    const slidingInterval = setInterval(() => {
+      handleSlideToRight();
+    }, 5000);
+
+    return () => {
+      clearInterval(slidingInterval);
+    };
+  }, []);
 
   const handleSlideToLeft = () => {
     setCurrentSlidingPosition((prevState) => {
@@ -30,14 +36,48 @@ const TestimonialsList = () => {
     });
   };
 
+  const handleSlideToPosition = (position: number) => {
+    setCurrentSlidingPosition(position);
+  };
+
   return (
     <ul className={styles.reviews}>
+      {/* Sliding Arrows */}
       <LeftArrowIcon className={styles.slideLeft} onClick={handleSlideToLeft} />
       <RightArrowIcon
         className={styles.slideRight}
         onClick={handleSlideToRight}
       />
 
+      {/* Sliding Dots */}
+      <div className={styles.slideDots}>
+        <div
+          className={
+            currentSlidingPosition === 0
+              ? `${styles.slideDot} ${styles.active}`
+              : styles.slideDot
+          }
+          onClick={() => handleSlideToPosition(0)}
+        />
+        <div
+          className={
+            currentSlidingPosition === 1
+              ? `${styles.slideDot} ${styles.active}`
+              : styles.slideDot
+          }
+          onClick={() => handleSlideToPosition(1)}
+        />
+        <div
+          className={
+            currentSlidingPosition === 2
+              ? `${styles.slideDot} ${styles.active}`
+              : styles.slideDot
+          }
+          onClick={() => handleSlideToPosition(2)}
+        />
+      </div>
+
+      {/* Customer Review */}
       <TestimonialsItem
         position={0}
         currentSlidingPosition={currentSlidingPosition}

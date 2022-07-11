@@ -1,7 +1,7 @@
 .reviews {
   list-style: none;
   position: relative;
-  height: 40rem;
+  height: 50rem;
 }
 
 .slideLeft,
@@ -20,4 +20,28 @@
 
 .slideRight {
   right: 5%;
+}
+
+.slideDots {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.slideDot {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 100%;
+  background-color: var(--color-dominant-lighter);
+  transition: all 0.3s;
+}
+
+.slideDot:hover,
+.slideDot.active {
+  background-color: var(--color-dominant-darker);
 }

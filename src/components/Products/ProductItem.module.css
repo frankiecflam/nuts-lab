@@ -1,0 +1,16 @@
+.item {
+  text-align: center;
+}
+
+.itemTitle {
+  margin: 2rem 0;
+  font-size: var(--font-size-1);
+  color: var(--color-font-light-1);
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+}
+
+.itemPrice {
+  font-size: var(--font-size-1);
+  color: var(--color-font-light-1);
+}

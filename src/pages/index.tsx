@@ -1,4 +1,3 @@
-import styles from "./Home.module.css";
 import Head from "next/head";
 import type { NextPage, GetStaticProps } from "next";
 import { Hero, TopPicks } from "../components/Home/index";
@@ -11,7 +10,7 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ topPicks }) => {
   return (
-    <div className={styles.home}>
+    <div>
       <Head>
         <title>Nuts Lab — Home</title>
         <meta

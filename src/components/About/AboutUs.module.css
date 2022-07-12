@@ -1,0 +1,39 @@
+.about {
+  min-height: 100vh;
+}
+
+.aboutBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 10rem;
+  row-gap: 6rem;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5rem;
+  font-size: var(--font-size-1);
+  color: var(--color-font-light-1);
+  line-height: 140%;
+}
+
+.imageContent {
+  position: relative;
+  order: -1;
+  height: 40rem;
+}
+.imageContent img {
+  object-fit: cover;
+}
+
+@media only screen and (min-width: 62em) {
+  .aboutBody {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .imageContent {
+    order: 1;
+    height: auto;
+  }
+}

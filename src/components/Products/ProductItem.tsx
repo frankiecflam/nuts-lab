@@ -13,7 +13,7 @@ const ProductImage = React.forwardRef<HTMLAnchorElement, ProductImageProps>(
   ({ src, href }, ref) => {
     return (
       <a ref={ref} href={href}>
-        <Image src={src} layout="responsive" width="250" height="320" />
+        <Image src={src} width="256" height="384" layout="responsive" />
       </a>
     );
   }

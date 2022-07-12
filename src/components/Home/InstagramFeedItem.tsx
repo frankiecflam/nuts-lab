@@ -15,7 +15,7 @@ const InstagramFeedImage = React.forwardRef<
 >(({ src, href }, ref) => {
   return (
     <a ref={ref} href={href} target="_blank">
-      <Image src={src} layout="responsive" width="1920" height="2880" />
+      <Image src={src} width="1920" height="2880" layout="responsive" />
     </a>
   );
 });

@@ -12,7 +12,7 @@ const Features = () => {
         <SectionBody className={styles.features}>
           <Image
             src={Secrets}
-            layout="responsive"
+            alt="picture of farmer planting seeds"
             className={styles.featureImage}
           />
           <div className={styles.featureItem}>
@@ -27,8 +27,8 @@ const Features = () => {
           </div>
           <Image
             src={Believe}
-            layout="responsive"
             className={styles.featureImage}
+            alt="picture of us working in a local farm"
           />
           <div className={styles.featureItem}>
             <h1 className={styles.featureItemHeading}>What we believe</h1>

@@ -6,7 +6,6 @@ interface InputProps {
   id?: string;
   type: string;
   required?: boolean;
-
   value?: string | undefined;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
@@ -18,6 +17,7 @@ const Input = ({
   id,
   type,
   required,
+  value,
   onChange,
   onFocus,
   onBlur,
@@ -27,6 +27,7 @@ const Input = ({
       className={className ? `${styles.input} ${className}` : styles.input}
       id={id}
       type={type}
+      value={value}
       required={required}
       onChange={onChange}
       onFocus={onFocus}

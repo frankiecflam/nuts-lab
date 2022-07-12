@@ -1,6 +1,6 @@
 .textareaInput {
   border: none;
-  border-bottom: 2px solid var(--color-font-light-3);
+  border-bottom: 2px solid var(--color-dominant-lighter);
   outline: none;
   padding: 1rem;
 }

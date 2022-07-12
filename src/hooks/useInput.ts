@@ -48,6 +48,9 @@ const inputReducer = (state: InputState, action: ActionType): InputState => {
         inputIsTouched: true,
       };
 
+    case ACTIONS.reset:
+      return inputInitialState;
+
     default:
       return inputInitialState;
   }
@@ -63,7 +66,9 @@ const useInput = ({ authenticate }: UserInputProps) => {
     inputInitialState
   );
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     inputDispatch({ type: ACTIONS.change, value: e.target.value });
   };
 

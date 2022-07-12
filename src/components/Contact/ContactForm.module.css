@@ -1,14 +1,7 @@
 .contactForm {
   display: flex;
   flex-direction: column;
-}
-
-.contactFormHeading {
-  text-align: center;
-  margin-bottom: 8rem;
-  font-weight: 500;
-  color: var(--color-font-light-1);
-  text-transform: capitalize;
+  row-gap: 5rem;
 }
 
 .contactFormBody {
@@ -20,4 +13,15 @@
 .formGroup {
   position: relative;
   align-self: center;
+}
+
+.formSubmitBtn {
+  align-self: center;
+  width: 10rem;
+}
+
+.formFeedback {
+  text-align: center;
+  color: var(--color-font-light-1);
+  font-weight: 600;
 }

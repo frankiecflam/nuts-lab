@@ -7,7 +7,11 @@ const CotactUs = () => {
   return (
     <Section className={styles.contact}>
       <Container>
-        <SectionHeader title="contact us" />
+        <SectionHeader title="contact">
+          <h2 className={styles.contactSubHeading}>
+            we would love to hear from you!
+          </h2>
+        </SectionHeader>
         <SectionBody className={styles.contactBody}>
           <ContactForm />
         </SectionBody>

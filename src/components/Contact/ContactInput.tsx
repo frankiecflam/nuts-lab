@@ -8,7 +8,7 @@ interface ContactInputProps {
   textarea?: boolean;
   required?: boolean;
   value?: string | undefined;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
 }

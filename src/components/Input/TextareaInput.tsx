@@ -20,6 +20,7 @@ const TextareaInput = ({
   rows,
   cols,
   required,
+  value,
   onChange,
   onFocus,
   onBlur,
@@ -35,6 +36,7 @@ const TextareaInput = ({
       rows={rows}
       cols={cols}
       required={required}
+      value={value}
       onChange={onChange}
       onFocus={onFocus}
       onBlur={onBlur}

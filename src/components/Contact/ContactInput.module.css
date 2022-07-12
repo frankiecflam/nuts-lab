@@ -1,6 +1,5 @@
 .input {
   width: 30rem;
-  border-color: var(--color-dominant-lighter);
   transition: all 0.4s ease-out;
 }
 

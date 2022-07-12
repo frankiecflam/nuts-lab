@@ -1,0 +1,9 @@
+.label {
+  position: absolute;
+  top: -30%;
+  padding-left: 1rem;
+  text-transform: uppercase;
+  color: var(--color-font-light-2);
+  letter-spacing: 0.25rem;
+  font-size: var(--font-size-xs);
+}

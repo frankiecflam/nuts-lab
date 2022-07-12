@@ -1,0 +1,6 @@
+.input {
+  border: none;
+  border-bottom: 2px solid var(--color-font-light-3);
+  outline: none;
+  padding: 1rem;
+}

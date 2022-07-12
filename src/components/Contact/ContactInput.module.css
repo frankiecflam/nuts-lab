@@ -1,0 +1,21 @@
+.input {
+  width: 30rem;
+  border-color: var(--color-dominant-lighter);
+  transition: all 0.4s ease-out;
+}
+
+.input:focus-within {
+  border-color: var(--color-dominant-darker);
+}
+
+@media only screen and (min-width: 36em) {
+  .input {
+    width: 40rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .input {
+    width: 50rem;
+  }
+}

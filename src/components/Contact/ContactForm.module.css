@@ -1,0 +1,23 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactFormHeading {
+  text-align: center;
+  margin-bottom: 8rem;
+  font-weight: 500;
+  color: var(--color-font-light-1);
+  text-transform: capitalize;
+}
+
+.contactFormBody {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6rem;
+}
+
+.formGroup {
+  position: relative;
+  align-self: center;
+}

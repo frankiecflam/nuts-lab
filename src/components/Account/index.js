@@ -5,3 +5,4 @@ export { default as AccountInput } from "./AccountInput";
 export { default as AccountInputLabel } from "./AccountInputLabel";
 export { default as AccountFormGroup } from "./AccountFormGroup";
 export { default as AccountFormFeedback } from "./AccountFormFeedback";
+export { default as AccountFormToggle } from "./AccountFormToggle";

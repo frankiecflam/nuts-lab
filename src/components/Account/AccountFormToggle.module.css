@@ -1,0 +1,10 @@
+.toggleContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  align-items: center;
+}
+
+.btnToggler[type="button"] {
+  background-color: var(--color-dominant-lighter);
+}

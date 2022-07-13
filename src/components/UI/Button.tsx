@@ -5,15 +5,17 @@ interface ButtonProps {
   name: string;
   type: "submit" | "reset" | "button";
   className?: string;
-  onSubmit: (e: FormEvent) => void;
+  onSubmit?: (e: FormEvent) => void;
+  onClick?: () => void;
 }
 
-const Button = ({ name, type, className, onSubmit }: ButtonProps) => {
+const Button = ({ name, type, className, onSubmit, onClick }: ButtonProps) => {
   return (
     <button
       type={type}
       className={className ? `${styles.btn} ${className}` : styles.btn}
       onSubmit={onSubmit}
+      onClick={onClick}
     >
       {name}
     </button>

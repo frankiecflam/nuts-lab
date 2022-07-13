@@ -1,3 +1,4 @@
+import styles from "./AccountSignup.module.css";
 import { SectionHeader, SectionBody } from "../Section";
 import {
   AccountForm,
@@ -5,13 +6,18 @@ import {
   AccountInputLabel,
   AccountFormGroup,
   AccountFormFeedback,
+  AccountFormToggle,
 } from "./index";
 import { useInput } from "../../hooks";
 import { authEmailInput, authPasswordInput } from "../../utils/helpers";
 import { Button } from "../UI";
 import { FormEvent, useState } from "react";
 
-const AccountSignup = () => {
+interface AccountSignupProps {
+  onFormSwitch: () => void;
+}
+
+const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
   const {
     inputValue: emailInputState,
     inputIsValid: emailInputValid,
@@ -64,7 +70,7 @@ const AccountSignup = () => {
   return (
     <>
       <SectionHeader title="sign up" />
-      <SectionBody>
+      <SectionBody className={styles.signUpBody}>
         <AccountForm onSubmit={handleFormSubmit}>
           <AccountFormGroup>
             <AccountInputLabel name="email" />
@@ -90,6 +96,7 @@ const AccountSignup = () => {
           <Button type="submit" name="sign up" onSubmit={handleFormSubmit} />
           {formFeedback && <AccountFormFeedback message={formFeedback} />}
         </AccountForm>
+        <AccountFormToggle onClick={onFormSwitch} />
       </SectionBody>
     </>
   );

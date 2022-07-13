@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { AccountContent } from "../../components/Account/index";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Account: NextPage = () => {
   return (

@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import cookie from "cookie";
 
 type ResponseType = {
   error?: {
@@ -39,6 +40,9 @@ export default async function handler(
   }
 
   const { idToken } = await response.json();
+
+  // Set cookie for idToken to be stored for a period of time
+  res.setHeader("Set-Cookie", {});
 
   res.status(response.status).json({
     data: {

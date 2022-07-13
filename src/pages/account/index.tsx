@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { AccountContent } from "../../components/Account/index";
 
 const Account: NextPage = () => {
   return (
@@ -11,7 +12,7 @@ const Account: NextPage = () => {
           content="Nuts Lab is a UK-based nuts retailer wih strong emphasis on naturality, deliciousness and food safety. We have been in business since 1982, and striving to deliver the best nuts. "
         />
       </Head>
-      <div>Account</div>
+      <AccountContent />
     </div>
   );
 };

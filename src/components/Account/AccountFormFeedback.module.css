@@ -1,0 +1,5 @@
+.formFeedback {
+  text-align: center;
+  color: var(--color-font-light-1);
+  font-weight: 600;
+}

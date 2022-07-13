@@ -57,7 +57,7 @@ const inputReducer = (state: InputState, action: ActionType): InputState => {
 };
 
 interface UserInputProps {
-  authenticate: (value: string) => boolean;
+  authenticate?: (value: string) => boolean;
 }
 
 const useInput = ({ authenticate }: UserInputProps) => {

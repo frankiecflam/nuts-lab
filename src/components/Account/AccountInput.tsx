@@ -1,20 +1,19 @@
-import styles from "./Input.module.css";
+import styles from "./AccountInput.module.css";
+import { Input } from "../Input";
 import { ChangeEvent } from "react";
 
-interface InputProps {
-  className?: string;
-  id?: string;
+interface AccountInputProps {
+  id: string;
   type: string;
   required?: boolean;
   value?: string | undefined;
   minLength?: number;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
 }
 
-const Input = ({
-  className,
+const AccountInput = ({
   id,
   type,
   required,
@@ -23,15 +22,15 @@ const Input = ({
   onChange,
   onFocus,
   onBlur,
-}: InputProps) => {
+}: AccountInputProps) => {
   return (
-    <input
-      className={className ? `${styles.input} ${className}` : styles.input}
-      id={id}
+    <Input
+      className={styles.input}
       type={type}
-      value={value}
+      id={id}
       minLength={minLength}
       required={required}
+      value={value}
       onChange={onChange}
       onFocus={onFocus}
       onBlur={onBlur}
@@ -39,4 +38,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default AccountInput;

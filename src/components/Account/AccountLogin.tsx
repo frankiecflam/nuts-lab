@@ -1,5 +1,5 @@
-import styles from "./AccountSignup.module.css";
-import { SectionHeader, SectionBody } from "../Section";
+import styles from "./AccountLogin.module.css";
+import { SectionHeader, SectionBody } from "../Section/index";
 import {
   AccountForm,
   AccountInput,
@@ -8,45 +8,35 @@ import {
   AccountFormFeedback,
   AccountFormToggle,
 } from "./index";
-import { useInput } from "../../hooks";
-import { authEmailInput, authPasswordInput } from "../../utils/helpers";
-import { Button } from "../UI";
 import { FormEvent, useState } from "react";
+import { useInput } from "../../hooks";
+import { Button } from "../UI";
 import { useAuthContext } from "../../context/AuthContext";
 
-interface AccountSignupProps {
+interface AccountLoginProps {
   onFormSwitch: () => void;
 }
 
-const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
+const AccountLogin = ({ onFormSwitch }: AccountLoginProps) => {
+  const [formFeedback, setFormFeedback] = useState("");
+  const { login } = useAuthContext();
+
   const {
     inputValue: emailInputState,
-    inputIsValid: emailInputValid,
     onChange: emailInputChange,
     onReset: emailInputReset,
-  } = useInput({ authenticate: authEmailInput });
+  } = useInput({});
 
   const {
     inputValue: passwordInputState,
-    inputIsValid: passwordInputValid,
     onChange: passwordInputChange,
     onReset: passwordInputReset,
-  } = useInput({ authenticate: authPasswordInput });
-
-  const [formFeedback, setFormFeedback] = useState("");
-  const { login } = useAuthContext();
+  } = useInput({});
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // If email and password are authenticated as invalid, show error and return
-    const formValidity = emailInputValid && passwordInputValid;
-    if (!formValidity) {
-      setFormFeedback("Invalid email or/and password!");
-    }
-
-    // Register user in Firebase
-    const res = await fetch("api/signup", {
+    const res = await fetch("api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,24 +47,25 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
       }),
     });
 
-    const { data, error } = await res.json();
-
-    // show registration status to users
-    if (error) {
-      setFormFeedback(error.message);
+    if (!res.ok) {
+      const {
+        error: { message },
+      } = await res.json();
+      setFormFeedback(message);
       return;
     }
-    setFormFeedback("Your account has been set up!");
 
-    //  1. create an user instance in DB with the id; 2. idToken to be stored in ContextAPI
-    const { idToken, localId } = data;
+    const {
+      data: { idToken },
+    } = await res.json();
+
     login(idToken);
   };
 
   return (
     <>
-      <SectionHeader title="sign up" />
-      <SectionBody className={styles.signUpBody}>
+      <SectionHeader title="log in" />
+      <SectionBody className={styles.loginBody}>
         <AccountForm onSubmit={handleFormSubmit}>
           <AccountFormGroup>
             <AccountInputLabel name="email" />
@@ -97,13 +88,13 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
               onChange={passwordInputChange}
             />
           </AccountFormGroup>
-          <Button type="submit" name="sign up" onSubmit={handleFormSubmit} />
+          <Button type="submit" name="log in" onSubmit={handleFormSubmit} />
           {formFeedback && <AccountFormFeedback message={formFeedback} />}
         </AccountForm>
-        <AccountFormToggle onClick={onFormSwitch} signupFormActive={true} />
+        <AccountFormToggle onClick={onFormSwitch} signupFormActive={false} />
       </SectionBody>
     </>
   );
 };
 
-export default AccountSignup;
+export default AccountLogin;

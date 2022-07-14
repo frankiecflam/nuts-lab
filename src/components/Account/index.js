@@ -7,3 +7,4 @@ export { default as AccountInputLabel } from "./AccountInputLabel";
 export { default as AccountFormGroup } from "./AccountFormGroup";
 export { default as AccountFormFeedback } from "./AccountFormFeedback";
 export { default as AccountFormToggle } from "./AccountFormToggle";
+export { default as AccountDetails } from "./AccountDetails";

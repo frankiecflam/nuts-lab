@@ -1,7 +1,7 @@
 import styles from "./AccountContent.module.css";
 import { Section } from "../Section";
 import { Container } from "../UI/index";
-import { AccountSignup, AccountLogin } from "./index";
+import { AccountSignup, AccountLogin, AccountDetails } from "./index";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 
@@ -22,6 +22,7 @@ const AccountContent = () => {
         {!isLoggedIn && !showSignupForm && (
           <AccountLogin onFormSwitch={handleFormSwitch} />
         )}
+        {isLoggedIn && <AccountDetails />}
       </Container>
     </Section>
   );

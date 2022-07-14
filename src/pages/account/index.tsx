@@ -3,11 +3,7 @@ import Head from "next/head";
 import { AccountContent } from "../../components/Account/index";
 import { verifyIdToken } from "../../utils/helpers";
 
-interface AccountPageProps {
-  idToken: string | null;
-}
-
-const Account: NextPage<AccountPageProps> = ({ idToken }) => {
+const Account: NextPage = () => {
   return (
     <div>
       <Head>
@@ -24,6 +20,7 @@ const Account: NextPage<AccountPageProps> = ({ idToken }) => {
 
 export default Account;
 
+// Account Page is protected for user credentials.
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { authToken } = context.req.cookies;
   const idToken = authToken ? await verifyIdToken(authToken) : null;
@@ -34,11 +31,3 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
-
-/*
-  Retrieve authToken and verify it
-    - If valid, then automatically log in users
-
-
-
-*/

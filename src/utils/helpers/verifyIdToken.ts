@@ -15,7 +15,7 @@ export default async function verifyIdToken(idToken: string) {
   );
 
   if (!res.ok) {
-    return undefined;
+    return null;
   }
 
   return idToken;

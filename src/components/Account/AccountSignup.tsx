@@ -9,7 +9,11 @@ import {
   AccountFormToggle,
 } from "./index";
 import { useInput } from "../../hooks";
-import { authEmailInput, authPasswordInput } from "../../utils/helpers";
+import {
+  authEmailInput,
+  authPasswordInput,
+  authTextInput,
+} from "../../utils/helpers";
 import { Button } from "../UI";
 import { FormEvent, useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
@@ -20,9 +24,18 @@ interface AccountSignupProps {
 
 const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
   const {
+    inputValue: nameInputState,
+    inputIsValid: nameInputValid,
+    onChange: nameInputChange,
+    onBlur: nameInputBlur,
+    onReset: nameInputReset,
+  } = useInput({ authenticate: authTextInput });
+
+  const {
     inputValue: emailInputState,
     inputIsValid: emailInputValid,
     onChange: emailInputChange,
+    onBlur: emailInputBlur,
     onReset: emailInputReset,
   } = useInput({ authenticate: authEmailInput });
 
@@ -30,23 +43,23 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
     inputValue: passwordInputState,
     inputIsValid: passwordInputValid,
     onChange: passwordInputChange,
+    onBlur: passwordInputBlur,
     onReset: passwordInputReset,
   } = useInput({ authenticate: authPasswordInput });
 
   const [formFeedback, setFormFeedback] = useState("");
   const { login } = useAuthContext();
+  const formValidity = emailInputValid && passwordInputValid && nameInputValid;
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // If email and password are authenticated as invalid, show error and return
-    const formValidity = emailInputValid && passwordInputValid;
     if (!formValidity) {
-      setFormFeedback("Invalid email or/and password!");
+      setFormFeedback("Invalid name, email or/and password!");
     }
 
     // Register user in Firebase
-    const res = await fetch("api/signup", {
+    const signUpRes = await fetch("api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,18 +70,44 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
       }),
     });
 
-    const { data, error } = await res.json();
+    const { data, error: signUpError } = await signUpRes.json();
 
     // show registration status to users
-    if (error) {
-      setFormFeedback(error.message);
+    if (signUpError) {
+      setFormFeedback(signUpError.message);
       return;
     }
-    setFormFeedback("Your account has been set up!");
 
     //  1. create an user instance in DB with the id; 2. idToken to be stored in ContextAPI
-    const { idToken, localId } = data;
+    const { idToken, localId }: { idToken: string; localId: string } = data;
+    const createUserRes = await fetch("api/createUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        localId,
+        name: nameInputState,
+        email: emailInputState,
+      }),
+    });
+
+    const { error: createUserError } = await createUserRes.json();
+
+    if (createUserError) {
+      setFormFeedback(
+        "Whoops! Something went wrong creating your account. Please contact us !"
+      );
+      return;
+    }
+    
+    setFormFeedback("Your account has been set up!");
     login(idToken);
+
+    // Reset all fields upon successful registration
+    nameInputReset();
+    emailInputReset();
+    passwordInputReset();
   };
 
   return (
@@ -77,6 +116,18 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
       <SectionBody className={styles.signUpBody}>
         <AccountForm onSubmit={handleFormSubmit}>
           <AccountFormGroup>
+            <AccountInputLabel name="name" />
+            <AccountInput
+              id="name"
+              type="text"
+              required
+              minLength={1}
+              value={nameInputState}
+              onChange={nameInputChange}
+              onBlur={nameInputBlur}
+            />
+          </AccountFormGroup>
+          <AccountFormGroup>
             <AccountInputLabel name="email" />
             <AccountInput
               id="email"
@@ -84,6 +135,7 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
               required
               value={emailInputState}
               onChange={emailInputChange}
+              onBlur={emailInputBlur}
             />
           </AccountFormGroup>
           <AccountFormGroup>
@@ -95,6 +147,7 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
               minLength={6}
               value={passwordInputState}
               onChange={passwordInputChange}
+              onBlur={passwordInputBlur}
             />
           </AccountFormGroup>
           <Button type="submit" name="sign up" onSubmit={handleFormSubmit} />

@@ -1,14 +1,24 @@
 import { FC, ReactNode } from "react";
 import AuthContext from "./AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface AuthContextProviderProps {
   children: ReactNode;
+  idTokenFromCookies: string;
 }
 
-const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) => {
+const AuthContextProvider: FC<AuthContextProviderProps> = ({
+  children,
+  idTokenFromCookies,
+}) => {
   const [idToken, setIdToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Automatically log in user whenever there is a valid idToken retrived from Cookies
+    // If no, do nothing
+    idTokenFromCookies && handleLogin(idTokenFromCookies);
+  }, [idTokenFromCookies]);
 
   const handleLogin = (idToken: string) => {
     setIdToken(idToken);

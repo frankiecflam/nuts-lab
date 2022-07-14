@@ -3,11 +3,11 @@ import Head from "next/head";
 import { AccountContent } from "../../components/Account/index";
 import { verifyIdToken } from "../../utils/helpers";
 
-interface AccountPageProps {}
+interface AccountPageProps {
+  idToken: string | null;
+}
 
-const Account: NextPage<AccountPageProps> = () => {
-  // isAuthenticated, if true, then update AuthContext
-
+const Account: NextPage<AccountPageProps> = ({ idToken }) => {
   return (
     <div>
       <Head>
@@ -25,10 +25,20 @@ const Account: NextPage<AccountPageProps> = () => {
 export default Account;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const { authToken } = context.req.cookies;
-  // const idToken = authToken ? await verifyIdToken(authToken) : false;
+  const { authToken } = context.req.cookies;
+  const idToken = authToken ? await verifyIdToken(authToken) : null;
 
   return {
-    props: {},
+    props: {
+      idToken,
+    },
   };
 };
+
+/*
+  Retrieve authToken and verify it
+    - If valid, then automatically log in users
+
+
+
+*/

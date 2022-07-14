@@ -6,13 +6,15 @@ import Layout from "../components/Layout/Layout";
 import AuthContextProvider from "../context/AuthContextProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const { idToken } = pageProps;
+
   return (
     <>
       <Head>
         <link rel="icon" href={Favicon.src} />
       </Head>
 
-      <AuthContextProvider>
+      <AuthContextProvider idTokenFromCookies={idToken}>
         <Layout>
           <Component {...pageProps} />
         </Layout>

@@ -8,3 +8,7 @@ export { default as AccountFormGroup } from "./AccountFormGroup";
 export { default as AccountFormFeedback } from "./AccountFormFeedback";
 export { default as AccountFormToggle } from "./AccountFormToggle";
 export { default as AccountDetails } from "./AccountDetails";
+export { default as AccountUserInfo } from "./AccountUserInfo";
+export { default as AccountOrderHistory } from "./AccountOrderHistory";
+export { default as AccountLogoutBtn } from "./AccountLogoutBtn";
+export { default as AccountDetailsHeader } from "./AccountDetailsHeader";

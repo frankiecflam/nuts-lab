@@ -6,7 +6,7 @@ import Layout from "../components/Layout/Layout";
 import AuthContextProvider from "../context/AuthContextProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { idToken } = pageProps;
+  const { idToken }: { idToken: string | undefined } = pageProps;
 
   return (
     <>

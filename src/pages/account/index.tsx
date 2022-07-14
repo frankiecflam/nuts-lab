@@ -1,9 +1,11 @@
 import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { AccountContent } from "../../components/Account/index";
-import { verifyIdToken } from "../../utils/helpers";
+import { verifyIdToken, getUserDetails } from "../../utils/helpers";
 
-const Account: NextPage = () => {
+interface AccountPageProps {}
+
+const Account: NextPage<AccountPageProps> = () => {
   return (
     <div>
       <Head>
@@ -24,6 +26,15 @@ export default Account;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { authToken } = context.req.cookies;
   const idToken = authToken ? await verifyIdToken(authToken) : null;
+
+  if (!idToken) {
+    return {
+      props: {},
+    };
+  }
+
+  const user = await getUserDetails(idToken);
+  console.log(user);
 
   return {
     props: {

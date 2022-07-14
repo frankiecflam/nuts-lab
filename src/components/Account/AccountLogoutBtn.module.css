@@ -1,0 +1,4 @@
+.accountLogoutBtn {
+  justify-self: center;
+  grid-column: 1/ -1;
+}

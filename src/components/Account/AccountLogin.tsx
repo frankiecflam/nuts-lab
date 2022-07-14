@@ -60,6 +60,10 @@ const AccountLogin = ({ onFormSwitch }: AccountLoginProps) => {
     } = await res.json();
 
     login(idToken);
+
+    // Reset all fields
+    emailInputReset();
+    passwordInputReset();
   };
 
   return (

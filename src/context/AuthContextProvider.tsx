@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 interface AuthContextProviderProps {
   children: ReactNode;
-  idTokenFromCookies: string | undefined | null;
+  idTokenFromCookies: string | undefined;
 }
 
 const AuthContextProvider: FC<AuthContextProviderProps> = ({

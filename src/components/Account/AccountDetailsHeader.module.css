@@ -1,0 +1,9 @@
+.detailsHeader {
+  padding: 2rem 0;
+}
+
+.detailsHeading {
+  color: var(--color-font-light-1);
+  font-weight: 400;
+  text-transform: capitalize;
+}

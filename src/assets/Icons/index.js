@@ -5,4 +5,4 @@ export { BsFacebook as FacebookIcon } from "react-icons/bs";
 export { BsTwitter as TwitterIcon } from "react-icons/bs";
 export { AiOutlineInstagram as InstagramIcon } from "react-icons/ai";
 export { MdOutlineAccountCircle as AccountIcon } from "react-icons/md";
-export { BsCart as CartIcon } from "react-icons";
+export { BsCart as CartIcon } from "react-icons/bs";

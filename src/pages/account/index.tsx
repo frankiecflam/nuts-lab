@@ -1,9 +1,13 @@
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { AccountContent } from "../../components/Account/index";
-import { useAuthContext } from "../../context/AuthContext";
+import { verifyIdToken } from "../../utils/helpers";
 
-const Account: NextPage = () => {
+interface AccountPageProps {}
+
+const Account: NextPage<AccountPageProps> = () => {
+  // isAuthenticated, if true, then update AuthContext
+
   return (
     <div>
       <Head>
@@ -19,3 +23,12 @@ const Account: NextPage = () => {
 };
 
 export default Account;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // const { authToken } = context.req.cookies;
+  // const idToken = authToken ? await verifyIdToken(authToken) : false;
+
+  return {
+    props: {},
+  };
+};

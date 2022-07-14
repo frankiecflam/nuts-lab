@@ -13,11 +13,19 @@ const ProductImage = React.forwardRef<HTMLAnchorElement, ProductImageProps>(
   ({ src, href }, ref) => {
     return (
       <a ref={ref} href={href}>
-        <Image src={src} width="256" height="384" layout="responsive" />
+        <Image
+          src={src}
+          width="256"
+          height="384"
+          layout="responsive"
+          alt="product image"
+        />
       </a>
     );
   }
 );
+
+ProductImage.displayName = "ProductImage";
 
 // FC
 interface ProductItemProps {

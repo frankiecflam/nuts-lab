@@ -29,6 +29,7 @@ const TestimonialsItem = ({
           width="100"
           height="100"
           className={styles.customerPicture}
+          alt={`picture of customer — ${name}`}
         />
         <div className={styles.customerRating}>
           <StarIcon />
@@ -40,7 +41,7 @@ const TestimonialsItem = ({
         <p className={styles.customerName}>{name}</p>
       </div>
       <div className={styles.reviewBody}>
-        <p className={styles.reviewContent}>“{content}"</p>
+        <p className={styles.reviewContent}>&quot;{content}&quot;</p>
       </div>
     </li>
   );

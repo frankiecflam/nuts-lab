@@ -42,7 +42,15 @@ export default async function handler(
   const { idToken } = await response.json();
 
   // Set cookie for idToken to be stored for a period of time
-  res.setHeader("Set-Cookie", {});
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("authToken", idToken, {
+      httpOnly: true,
+      maxAge: 60 * 60,
+      sameSite: "strict",
+      path: "/",
+    })
+  );
 
   res.status(response.status).json({
     data: {

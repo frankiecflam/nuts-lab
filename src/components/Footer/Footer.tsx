@@ -34,21 +34,33 @@ const Footer = () => {
           <ul className={styles.socialList}>
             <li className={styles.socialItem}>
               <Link href="https://www.facebook.com/">
-                <a href="https://www.facebook.com/" target="_blank">
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <FacebookIcon />
                 </a>
               </Link>
             </li>
             <li className={styles.socialItem}>
               <Link href="https://www.twitter.com/">
-                <a href="https://www.twitter.com/" target="_blank">
+                <a
+                  href="https://www.twitter.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <TwitterIcon />
                 </a>
               </Link>
             </li>
             <li className={styles.socialItem}>
               <Link href="https://www.instagram.com/">
-                <a href="https://www.instagram.com/" target="_blank">
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <InstagramIcon />
                 </a>
               </Link>

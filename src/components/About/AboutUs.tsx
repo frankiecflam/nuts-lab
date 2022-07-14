@@ -34,7 +34,12 @@ const AboutUs = () => {
             </p>
           </div>
           <div className={styles.imageContent}>
-            <Image src={AboutUsImage} layout="fill" priority={true} />
+            <Image
+              src={AboutUsImage}
+              layout="fill"
+              priority={true}
+              alt="picture of a bowl of nuts"
+            />
           </div>
         </SectionBody>
       </Container>

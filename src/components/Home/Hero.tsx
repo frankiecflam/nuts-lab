@@ -12,6 +12,7 @@ const Hero = () => {
         layout="fill"
         className={styles.bgImg}
         priority={true}
+        alt="background image of hero section"
       />
       <Container className={styles.heroContent}>
         <div className={styles.textContent}>

@@ -14,11 +14,19 @@ const InstagramFeedImage = React.forwardRef<
   InstagramFeedImageProps
 >(({ src, href }, ref) => {
   return (
-    <a ref={ref} href={href} target="_blank">
-      <Image src={src} width="1920" height="2880" layout="responsive" />
+    <a ref={ref} href={href} target="_blank" rel="noreferrer">
+      <Image
+        src={src}
+        width="1920"
+        height="2880"
+        layout="responsive"
+        alt="picture of an instagram feed"
+      />
     </a>
   );
 });
+
+InstagramFeedImage.displayName = "InstagramFeedImage";
 
 interface InstagramFeedItemProps {
   src: StaticImageData;

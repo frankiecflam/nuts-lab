@@ -13,8 +13,8 @@ const AccountFormToggle = ({
   return (
     <div className={styles.toggleContainer}>
       <p>or</p>
-      {signupFormActive && <p>If you already have an account,</p>}
-      {!signupFormActive && <p>If you don't have an account,</p>}
+      {signupFormActive && <p>If you already have an account&#44;</p>}
+      {!signupFormActive && <p>If you don&apos;t have an account&#44;</p>}
       <Button
         name={signupFormActive ? "log in" : "sign up"}
         type="button"

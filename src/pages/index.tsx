@@ -10,11 +10,11 @@ import {
 import { getTopPicks } from "../utils/helpers/index";
 import { Product } from "../types/index";
 
-interface HomeProps {
+interface HomePageProps {
   topPicks: Product[];
 }
 
-const Home: NextPage<HomeProps> = ({ topPicks }) => {
+const Home: NextPage<HomePageProps> = ({ topPicks }) => {
   return (
     <div>
       <Head>

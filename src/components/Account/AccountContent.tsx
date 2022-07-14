@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 
 const AccountContent = () => {
-  const [showSignupForm, setShowSignupForm] = useState(true);
+  const [showSignupForm, setShowSignupForm] = useState(false);
   const { isLoggedIn } = useAuthContext();
 
   const handleFormSwitch = () => {

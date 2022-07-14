@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import cookie from "cookie";
 
 type ResponseType = {
   data?: {
@@ -39,5 +40,17 @@ export default async function handler(
   }
 
   const { idToken, localId } = await response.json();
+
+  // Set cookie for idToken to be stored for a period of time
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("authToken", idToken, {
+      httpOnly: true,
+      maxAge: 60 * 60,
+      sameSite: "strict",
+      path: "/",
+    })
+  );
+
   res.status(response.status).json({ data: { idToken, localId } });
 }

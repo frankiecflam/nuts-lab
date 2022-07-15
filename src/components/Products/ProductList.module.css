@@ -1,0 +1,26 @@
+.productList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 50%;
+  gap: 6rem;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 36em) {
+  .productList {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: stretch;
+  }
+}
+
+@media only screen and (min-width: 62em) {
+  .productList {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  .productList {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

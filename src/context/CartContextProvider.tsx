@@ -1,6 +1,5 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useState } from "react";
 import CartContext from "./CartContext";
-import { useState } from "react";
 import { Product } from "../types";
 
 interface CartContextProviderProps {

@@ -30,7 +30,6 @@ ProductImage.displayName = "ProductImage";
 // FC
 interface ProductItemProps {
   className?: string;
-  id: string;
   href: string;
   src: string;
   title: string;
@@ -39,7 +38,6 @@ interface ProductItemProps {
 
 const ProductItem = ({
   className,
-  id,
   href,
   src,
   title,
@@ -48,8 +46,8 @@ const ProductItem = ({
   const classes = className ? `${styles.item} ${className}` : styles.item;
 
   return (
-    <li className={classes} key={id}>
-      <Link href="/" passHref>
+    <li className={classes}>
+      <Link href={href} passHref>
         <ProductImage src={src} href={href} />
       </Link>
       <p className={styles.itemTitle}>{title}</p>

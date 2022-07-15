@@ -28,7 +28,7 @@ export default async function handler(
         email: email,
         phone: "",
         address: "",
-        order: JSON.stringify({}),
+        order: JSON.stringify([]),
       }),
     }
   );

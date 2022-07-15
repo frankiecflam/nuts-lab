@@ -4,13 +4,23 @@ import { Container } from "../UI/index";
 import { AccountSignup, AccountLogin, AccountDetails } from "./index";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
+import { User } from "../../types/index";
 
-const AccountContent = () => {
+interface AccountContentProps {
+  user: User;
+}
+
+const AccountContent = ({ user }: AccountContentProps) => {
   const [showSignupForm, setShowSignupForm] = useState(false);
+  const [userDetails, setUserDetails] = useState(user);
   const { isLoggedIn } = useAuthContext();
 
   const handleFormSwitch = () => {
     setShowSignupForm((prevState) => !prevState);
+  };
+
+  const handleSetUserDetails = (user: User) => {
+    setUserDetails(user);
   };
 
   return (
@@ -20,9 +30,12 @@ const AccountContent = () => {
           <AccountSignup onFormSwitch={handleFormSwitch} />
         )}
         {!isLoggedIn && !showSignupForm && (
-          <AccountLogin onFormSwitch={handleFormSwitch} />
+          <AccountLogin
+            onFormSwitch={handleFormSwitch}
+            onSetUserDetails={handleSetUserDetails}
+          />
         )}
-        {isLoggedIn && <AccountDetails />}
+        {isLoggedIn && userDetails && <AccountDetails user={userDetails} />}
       </Container>
     </Section>
   );

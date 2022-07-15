@@ -12,12 +12,18 @@ import { FormEvent, useState } from "react";
 import { useInput } from "../../hooks";
 import { Button } from "../UI";
 import { useAuthContext } from "../../context/AuthContext";
+import { User } from "../../types";
+import { getUserDetails } from "../../utils/helpers/index";
 
 interface AccountLoginProps {
   onFormSwitch: () => void;
+  onSetUserDetails: (user: User) => void;
 }
 
-const AccountLogin = ({ onFormSwitch }: AccountLoginProps) => {
+const AccountLogin = ({
+  onFormSwitch,
+  onSetUserDetails,
+}: AccountLoginProps) => {
   const [formFeedback, setFormFeedback] = useState("");
   const { login } = useAuthContext();
 
@@ -36,7 +42,7 @@ const AccountLogin = ({ onFormSwitch }: AccountLoginProps) => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch("api/login", {
+    const loginRes = await fetch("api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,19 +53,38 @@ const AccountLogin = ({ onFormSwitch }: AccountLoginProps) => {
       }),
     });
 
-    if (!res.ok) {
+    if (!loginRes.ok) {
       const {
         error: { message },
-      } = await res.json();
+      } = await loginRes.json();
       setFormFeedback(message);
       return;
     }
 
     const {
-      data: { idToken },
-    } = await res.json();
+      data: { idToken, localId },
+    } = await loginRes.json();
 
     login(idToken);
+
+    // Update user details on Client side
+    const userDataRes = await fetch("api/getUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        localId,
+      }),
+    });
+
+    const { user, error } = await userDataRes.json();
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    // update user details state on client side
+    onSetUserDetails(user);
 
     // Reset all fields
     emailInputReset();

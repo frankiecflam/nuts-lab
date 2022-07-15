@@ -1,0 +1,29 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  align-items: center;
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.detailsItem {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+}
+
+.itemName {
+  color: var(--color-font-light-1);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 48em) {
+  .details {
+    align-items: stretch;
+  }
+}

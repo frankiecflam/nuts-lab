@@ -1,3 +1,5 @@
+import { User } from "../../types";
+
 export default async function getUserDetails(idToken: string) {
   // get localId through idToken
   const userDataRes = await fetch(
@@ -20,6 +22,7 @@ export default async function getUserDetails(idToken: string) {
   const {
     users: [userData],
   } = await userDataRes.json();
+
   const { localId } = userData;
 
   // Get user data through localId
@@ -35,7 +38,8 @@ export default async function getUserDetails(idToken: string) {
 
   for (const key in users) {
     if (users[key].id === localId) {
-      return users[key];
+      const user: User = users[key];
+      return user;
     }
   }
   return null;

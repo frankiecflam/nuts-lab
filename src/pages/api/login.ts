@@ -7,6 +7,7 @@ type ResponseType = {
   };
   data?: {
     idToken: string;
+    localId: string;
   };
 };
 
@@ -39,7 +40,7 @@ export default async function handler(
     });
   }
 
-  const { idToken } = await response.json();
+  const { idToken, localId } = await response.json();
 
   // Set cookie for idToken to be stored for a period of time
   res.setHeader(
@@ -55,6 +56,7 @@ export default async function handler(
   res.status(response.status).json({
     data: {
       idToken,
+      localId,
     },
   });
 }

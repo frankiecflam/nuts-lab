@@ -1,7 +1,15 @@
 import styles from "./Overlay.module.css";
 
-const Overlay = () => {
-  return <div className={styles.overlay}>Overlay</div>;
+interface OverlayProps {
+  onClick: () => void;
+}
+
+const Overlay = ({ onClick }: OverlayProps) => {
+  return (
+    <div className={styles.overlay} onClick={onClick}>
+      Overlay
+    </div>
+  );
 };
 
 export default Overlay;

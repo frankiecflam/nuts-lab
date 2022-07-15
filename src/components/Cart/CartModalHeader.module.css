@@ -1,5 +1,5 @@
 .cartModalHeader {
-  padding: 3rem 0;
+  padding: 4rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,6 +14,7 @@
 }
 
 .cartCloseModalBtn {
+  cursor: pointer;
   position: relative;
   width: 1.5rem;
   height: 0.15rem;

@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Favicon } from "../assets/Images/Logos/index";
 import Layout from "../components/Layout/Layout";
 import AuthContextProvider from "../context/AuthContextProvider";
+import CartContextProvider from "../context/CartContextProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { idToken }: { idToken: string | undefined } = pageProps;
@@ -15,9 +16,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <AuthContextProvider idTokenFromCookies={idToken}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <CartContextProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </CartContextProvider>
       </AuthContextProvider>
     </>
   );

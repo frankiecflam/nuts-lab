@@ -1,10 +1,21 @@
 import styles from "./CartModal.module.css";
 import { CartModalHeader, CartModalBody, CartModalFooter } from "./index";
 
-const CartModal = () => {
+interface CartModalProps {
+  onCloseModal: () => void;
+  showCartModal: boolean;
+}
+
+const CartModal = ({ onCloseModal, showCartModal }: CartModalProps) => {
   return (
-    <div className={styles.cartModal}>
-      <CartModalHeader />
+    <div
+      className={
+        showCartModal
+          ? `${styles.cartModal} ${styles.active}`
+          : styles.cartModal
+      }
+    >
+      <CartModalHeader onCloseModal={onCloseModal} />
       <CartModalBody />
       <CartModalFooter />
     </div>

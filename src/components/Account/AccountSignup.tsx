@@ -17,12 +17,17 @@ import {
 import { Button } from "../UI";
 import { FormEvent, useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
+import { User } from "../../types/index";
 
 interface AccountSignupProps {
   onFormSwitch: () => void;
+  onSetUserDetails: (user: User) => void;
 }
 
-const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
+const AccountSignup = ({
+  onFormSwitch,
+  onSetUserDetails,
+}: AccountSignupProps) => {
   const {
     inputValue: nameInputState,
     inputIsValid: nameInputValid,
@@ -92,7 +97,10 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
       }),
     });
 
-    const { error: createUserError } = await createUserRes.json();
+    const {
+      error: createUserError,
+      success: { user },
+    } = await createUserRes.json();
 
     if (createUserError) {
       setFormFeedback(
@@ -100,8 +108,9 @@ const AccountSignup = ({ onFormSwitch }: AccountSignupProps) => {
       );
       return;
     }
-    
+
     setFormFeedback("Your account has been set up!");
+    onSetUserDetails(user);
     login(idToken);
 
     // Reset all fields upon successful registration

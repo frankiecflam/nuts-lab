@@ -27,7 +27,10 @@ const AccountContent = ({ user }: AccountContentProps) => {
     <Section className={styles.account}>
       <Container>
         {!isLoggedIn && showSignupForm && (
-          <AccountSignup onFormSwitch={handleFormSwitch} />
+          <AccountSignup
+            onFormSwitch={handleFormSwitch}
+            onSetUserDetails={setUserDetails}
+          />
         )}
         {!isLoggedIn && !showSignupForm && (
           <AccountLogin

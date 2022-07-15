@@ -12,11 +12,8 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
 
   const handleAddItem = (item: Product) => {
     // Check if item already exists in cart
-
     // If yes, then update Qty and totalPrice
-
     // If no, push to cart and then update totalPrice
-
   };
 
   const handleRemoveItem = (id: string) => {};

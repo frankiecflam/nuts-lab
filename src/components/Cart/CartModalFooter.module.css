@@ -1,0 +1,46 @@
+.cartModalFooter {
+  padding: 2rem 0;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.calculatedText {
+  color: var(--color-font-light-2);
+}
+
+.subTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subTotalName {
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+}
+
+.checkoutBtn:link,
+.checkoutBtn:visited {
+  text-align: center;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  background-color: var(--color-dominant);
+  color: var(--color-font-light-1);
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  box-shadow: 0 1.5rem 2rem 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+}
+
+.checkoutBtn:hover {
+  box-shadow: 0 2rem 2.5rem 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.75rem);
+}
+
+.checkoutBtn:active {
+  transform: translateY(0rem);
+  box-shadow: 0 1.5rem 2rem 0 rgba(0, 0, 0, 0.15);
+}

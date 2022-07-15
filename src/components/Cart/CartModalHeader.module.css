@@ -1,0 +1,39 @@
+.cartModalHeader {
+  padding: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartModalHeading {
+  text-transform: uppercase;
+  color: var(--color-font-light-3);
+  font-weight: 300;
+  font-size: var(--font-size-1);
+  letter-spacing: 0.25rem;
+}
+
+.cartCloseModalBtn {
+  position: relative;
+  width: 1.5rem;
+  height: 0.15rem;
+}
+
+.cartCloseModalBtn::before,
+.cartCloseModalBtn::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--color-font-light-3);
+}
+
+.cartCloseModalBtn::before {
+  transform: rotate(-135deg);
+}
+
+.cartCloseModalBtn::after {
+  transform: rotate(135deg);
+}

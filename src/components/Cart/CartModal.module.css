@@ -1,0 +1,14 @@
+.cartModal {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  right: 0;
+  width: 40rem;
+  height: 100%;
+  background-color: var(--color-background-white);
+  padding: 0 3rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}

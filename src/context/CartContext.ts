@@ -1,14 +1,14 @@
 import { createContext, useContext } from "react";
 import { Product } from "../types";
 
-type CartContextType = {
+interface CartContextInterface {
   items: Product[];
   totalPrice: number;
   addItem: (item: Product) => void;
   removeItem: (id: string) => void;
-};
+}
 
-const CartContext = createContext<CartContextType>({
+const CartContext = createContext<CartContextInterface>({
   items: [],
   totalPrice: 0,
   addItem: (item: {}) => {},

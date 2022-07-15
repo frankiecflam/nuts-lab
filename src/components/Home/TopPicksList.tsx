@@ -12,7 +12,6 @@ const TopPicksList = ({ topPicks }: TopPicksListProps) => {
       {topPicks.map((topPick) => (
         <ProductItem
           key={topPick.id}
-          id={topPick.id}
           title={topPick.title}
           href="/"
           src={topPick.image}

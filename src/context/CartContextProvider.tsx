@@ -47,7 +47,31 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
     }
   };
 
-  const handleRemoveItem = (producItemtId: string) => {};
+  const handleRemoveItem = (producItemtId: string) => {
+    // If existingQty === 1, then remove; otherwise, update Qty; UPDATE totalPrice at the end
+    const existingItem = items.find((item) => item.id === producItemtId);
+
+    if (!existingItem) return;
+
+    const currentExistingItemQty = existingItem.quantity;
+
+    if (currentExistingItemQty === 1) {
+      setItems((prevState) =>
+        prevState.filter((item) => item.id !== producItemtId)
+      );
+    } else {
+      const updatedExistingItem: CartItem = {
+        ...existingItem,
+        quantity: (existingItem!.quantity -= 1),
+      };
+      setItems((prevState) => [
+        ...prevState.filter((item) => item.id !== existingItem.id),
+        updatedExistingItem,
+      ]);
+
+      setTotalPrice((prevState) => (prevState -= existingItem.price));
+    }
+  };
 
   const CartContextAPI = {
     items,

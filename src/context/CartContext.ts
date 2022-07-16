@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
-import { Product } from "../types";
+import { Product, CartItems } from "../types";
 
 interface CartContextInterface {
-  items: Product[];
+  items: CartItems[];
   totalPrice: number;
   addItem: (item: Product) => void;
   removeItem: (id: string) => void;

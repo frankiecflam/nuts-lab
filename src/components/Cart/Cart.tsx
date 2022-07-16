@@ -4,10 +4,13 @@ import { Overlay } from "../UI";
 import { useState, useEffect } from "react";
 import { CartModal } from "./index";
 import { CartIcon } from "../../assets/Icons";
+import { useCartContext } from "../../context/CartContext";
 
 const Cart = () => {
   const [hasMounted, setHasMounted] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
+
+  
 
   useEffect(() => {
     setHasMounted(true);
@@ -21,7 +24,10 @@ const Cart = () => {
 
   return (
     <div className={styles.cart}>
-      <CartIcon className={styles.cartIcon} onClick={handleCartModalToggle} />
+      <div className={styles.cartIconDiv}>
+        <CartIcon className={styles.cartIcon} onClick={handleCartModalToggle} />
+        <p className={styles.cartIconQty}>1</p>
+      </div>
       {showCartModal &&
         createPortal(
           <Overlay onClick={handleCartModalToggle} />,

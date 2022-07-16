@@ -1,3 +1,18 @@
+.cartIconDiv {
+  position: relative;
+}
+
 .cartIcon {
   cursor: pointer;
+}
+
+.cartIconQty {
+  z-index: -1;
+  position: absolute;
+  top: -60%;
+  right: -20%;
+  border-radius: 100%;
+  padding: 0.25rem 0.85rem;
+  background-color: var(--color-dominant-lighter);
+  color: var(--color-dominant-darker);
 }

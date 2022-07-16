@@ -1,13 +1,13 @@
 import { FC, ReactNode, useState } from "react";
 import CartContext from "./CartContext";
-import { Product } from "../types";
+import { Product, CartItems } from "../types";
 
 interface CartContextProviderProps {
   children: ReactNode;
 }
 
 const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
-  const [items, setItems] = useState<Product[]>([]);
+  const [items, setItems] = useState<CartItems[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const handleAddItem = (item: Product) => {

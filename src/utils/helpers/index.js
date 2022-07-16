@@ -7,3 +7,4 @@ export { default as verifyIdToken } from "./verifyIdToken";
 export { default as getUserDetails } from "./getUserDetails";
 export { default as getActiveOrder } from "./getActiveOrder";
 export { default as getProducts } from "./getProducts";
+export { default as calculateCartQuantity } from "./calculateCartQuantity";

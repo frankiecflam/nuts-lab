@@ -13,7 +13,7 @@ const TopPicksList = ({ topPicks }: TopPicksListProps) => {
         <ProductItem
           key={topPick.id}
           title={topPick.title}
-          href="/"
+          href={`/products/${topPick.id}`}
           src={topPick.image}
           price={topPick.price}
         />

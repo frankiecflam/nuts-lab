@@ -1,4 +1,4 @@
-import { databaseURL } from "../../firebase";
+import { databaseURL } from "../../firebaseClient";
 
 export default async function getTopPicks() {
   const response = await fetch(`${databaseURL}/products.json`);

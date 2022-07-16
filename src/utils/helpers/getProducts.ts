@@ -1,4 +1,4 @@
-import { databaseURL } from "../../firebase";
+import { databaseURL } from "../../firebaseClient";
 import { Product } from "../../types/index";
 
 export default async function getProducts() {

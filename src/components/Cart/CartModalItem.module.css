@@ -1,0 +1,12 @@
+.cartModalItem {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cartModalItemImageDiv {
+  position: relative;
+}
+
+.cartModalItemImage {
+  object-fit: cover;
+}

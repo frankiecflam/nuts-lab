@@ -63,7 +63,7 @@
 }
 
 .productQtyDiv {
-  align-self: flex-start;
+  align-self: center;
   border: 1px solid var(--color-font-light-2);
 
   display: flex;
@@ -95,7 +95,7 @@
 }
 
 .productAddToCartBtn {
-  align-self: flex-start;
+  align-self: center;
   padding: 2rem 3rem;
   font-weight: 600;
 }
@@ -107,5 +107,9 @@
 
   .productImageDiv {
     height: auto;
+  }
+  .productAddToCartBtn,
+  .productQtyDiv {
+    align-self: flex-start;
   }
 }

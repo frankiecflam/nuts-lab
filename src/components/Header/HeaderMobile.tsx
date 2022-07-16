@@ -1,16 +1,19 @@
 import styles from "./HeaderMobile.module.css";
 
 interface HeaderMobileProps {
-  onClick: () => void;
   mobileActive: boolean;
+  onMobileBtnClick: () => void;
 }
 
-const HeaderMobile = ({ onClick, mobileActive }: HeaderMobileProps) => {
+const HeaderMobile = ({
+  mobileActive,
+  onMobileBtnClick,
+}: HeaderMobileProps) => {
   const classes = mobileActive
     ? `${styles.open} ${styles.mobile}`
     : styles.mobile;
 
-  return <div className={classes} onClick={onClick} />;
+  return <div className={classes} onClick={onMobileBtnClick} />;
 };
 
 export default HeaderMobile;

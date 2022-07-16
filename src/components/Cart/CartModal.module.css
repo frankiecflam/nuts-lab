@@ -3,7 +3,7 @@
   z-index: 99999;
   top: 0;
   right: 0;
-  width: 100%;
+  width: 90%;
   height: 100%;
   background-color: var(--color-background-white);
   padding: 0 3rem;
@@ -21,6 +21,6 @@
 
 @media only screen and (min-width: 48em) {
   .cartModal {
-    width: 40rem;
+    width: 60%;
   }
 }

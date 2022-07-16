@@ -11,7 +11,7 @@ import { useState } from "react";
 const Header = () => {
   const [mobileActive, setMobileActive] = useState(false);
 
-  const handleMobileBtnClick = () => {
+  const handleMobileActiveToggle = () => {
     setMobileActive((prevState) => !prevState);
   };
 
@@ -21,12 +21,15 @@ const Header = () => {
         <HeaderNavBrand />
         <HeaderNavList
           mobileActive={mobileActive}
-          onHide={handleMobileBtnClick}
+          onHide={handleMobileActiveToggle}
         />
-        <HeaderNavActions />
-        <HeaderMobile
-          onClick={handleMobileBtnClick}
+        <HeaderNavActions
           mobileActive={mobileActive}
+          onHide={handleMobileActiveToggle}
+        />
+        <HeaderMobile
+          mobileActive={mobileActive}
+          onMobileBtnClick={handleMobileActiveToggle}
         />
       </nav>
     </header>

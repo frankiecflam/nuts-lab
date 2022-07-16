@@ -3,9 +3,14 @@ import Link from "next/link";
 import Cart from "../Cart/Cart";
 import { AccountIcon } from "../../assets/Icons";
 
-const HeaderNavActions = () => {
+interface HeaderNavActionsProps {
+  mobileActive: boolean;
+  onHide: () => void;
+}
+
+const HeaderNavActions = ({ mobileActive, onHide }: HeaderNavActionsProps) => {
   return (
-    <div className={styles.actions}>
+    <div className={styles.actions} onClick={() => mobileActive && onHide()}>
       <Link href="/account">
         <a>
           <AccountIcon />

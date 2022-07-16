@@ -1,22 +1,53 @@
 import { FC, ReactNode, useState } from "react";
 import CartContext from "./CartContext";
-import { Product, CartItems } from "../types";
+import { Product, CartItem } from "../types";
 
 interface CartContextProviderProps {
   children: ReactNode;
 }
 
 const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
-  const [items, setItems] = useState<CartItems[]>([]);
+  const [items, setItems] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleAddItem = (item: Product) => {
+  const handleAddItem = (productItem: Product, addToCartQuantity: number) => {
     // Check if item already exists in cart
-    // If yes, then update Qty and totalPrice
-    // If no, push to cart and then update totalPrice
+    const itemAlreadyExist = items.find((item) => item.id === productItem.id);
+    // If no, update items and price states
+    if (!itemAlreadyExist) {
+      const newItem: CartItem = {
+        id: productItem.id,
+        title: productItem.title,
+        price: productItem.price,
+        image: productItem.image,
+        quantity: addToCartQuantity,
+      };
+      setItems((prevState) => [...prevState, newItem]);
+      setTotalPrice(
+        (prevState) => prevState + newItem.price * addToCartQuantity
+      );
+    } else {
+      // If yes, then update Qty and totalPrice
+      const existingItem =
+        items[items.findIndex((item) => item.id === productItem.id)];
+
+      const updatedExistingItem: CartItem = {
+        ...existingItem,
+        quantity: (existingItem.quantity += addToCartQuantity),
+      };
+
+      setItems((prevState) => [
+        ...prevState.filter((item) => item.id !== existingItem.id),
+        updatedExistingItem,
+      ]);
+
+      setTotalPrice(
+        (prevState) => prevState + existingItem.price * addToCartQuantity
+      );
+    }
   };
 
-  const handleRemoveItem = (id: string) => {};
+  const handleRemoveItem = (producItemtId: string) => {};
 
   const CartContextAPI = {
     items,

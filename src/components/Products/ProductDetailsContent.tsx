@@ -17,7 +17,7 @@ const ProductDetailsContent = ({ product }: ProductDetailsContentProps) => {
   const { addItem } = useCartContext();
 
   const handleAddItemToCart = () => {
-    addItem(product);
+    addItem(product, addToCartQty);
   };
 
   return (

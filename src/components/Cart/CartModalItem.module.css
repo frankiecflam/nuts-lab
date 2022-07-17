@@ -1,11 +1,12 @@
 .cartModalItem {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: minmax(10rem, 30rem) 1fr;
   column-gap: 3rem;
+  align-items: flex-start;
 }
 
 .cartModalItemImageDiv {
-  min-width: 12rem;
+  min-height: 25rem;
   position: relative;
 }
 

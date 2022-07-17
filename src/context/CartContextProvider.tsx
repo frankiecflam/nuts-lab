@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState, useRef } from "react";
 import CartContext from "./CartContext";
 import { Product, CartItem } from "../types";
 
@@ -9,6 +9,41 @@ interface CartContextProviderProps {
 const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    // During the inital render, get state from local storage
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+
+      const cartStateFromLocalStorage =
+        window.localStorage.getItem("cartItems");
+
+      // If there is any state retrieved from the localStorage, then update the cart context state
+      if (cartStateFromLocalStorage) {
+        const {
+          items: itemsFromStorage,
+          totalPrice: totalPriceFromStorage,
+        }: { items: CartItem[]; totalPrice: number } = JSON.parse(
+          cartStateFromLocalStorage
+        );
+
+        setItems(itemsFromStorage);
+        setTotalPrice(totalPriceFromStorage);
+      }
+
+      return;
+    }
+
+    // For subsequent render, update localStorage with the current state
+    window.localStorage.setItem(
+      "cartItems",
+      JSON.stringify({
+        items,
+        totalPrice,
+      })
+    );
+  }, [items, totalPrice]);
 
   const handleAddItem = (
     productItem: Product | Omit<Product, "description" | "topPick">,

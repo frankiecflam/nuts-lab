@@ -31,18 +31,14 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
       );
     } else {
       // If yes, then update Qty and totalPrice
-      const existingItem =
-        items[items.findIndex((item) => item.id === productItem.id)];
+      const existingItemIndex = items.findIndex(
+        (item) => item.id === productItem.id
+      );
+      const existingItem = items[existingItemIndex];
 
-      const updatedExistingItem: CartItem = {
-        ...existingItem,
-        quantity: (existingItem.quantity += addToCartQuantity),
-      };
+      items[existingItemIndex].quantity += addToCartQuantity;
 
-      setItems((prevState) => [
-        ...prevState.filter((item) => item.id !== existingItem.id),
-        updatedExistingItem,
-      ]);
+      setItems(items);
 
       setTotalPrice(
         (prevState) => prevState + existingItem.price * addToCartQuantity
@@ -52,10 +48,10 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
 
   const handleRemoveItem = (producItemtId: string, removeAll?: boolean) => {
     // If existingQty === 1, then remove; otherwise, update Qty; UPDATE totalPrice at the end
-    const existingItem = items.find((item) => item.id === producItemtId);
-
-    if (!existingItem) return;
-
+    const existingItemIndex = items.findIndex(
+      (item) => item.id === producItemtId
+    );
+    const existingItem = items[existingItemIndex];
     const currentExistingItemQty = existingItem.quantity;
 
     if (currentExistingItemQty === 1 || removeAll) {
@@ -63,14 +59,8 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
         prevState.filter((item) => item.id !== producItemtId)
       );
     } else {
-      const updatedExistingItem: CartItem = {
-        ...existingItem,
-        quantity: (existingItem!.quantity -= 1),
-      };
-      setItems((prevState) => [
-        ...prevState.filter((item) => item.id !== existingItem.id),
-        updatedExistingItem,
-      ]);
+      items[existingItemIndex].quantity -= 1;
+      setItems(items);
     }
 
     setTotalPrice((prevState) =>

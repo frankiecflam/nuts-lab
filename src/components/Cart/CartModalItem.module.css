@@ -78,8 +78,9 @@
   background-color: transparent;
   box-shadow: none;
   border-bottom: 1px solid currentColor;
-  color: var(--color-font-light-2);
+  color: var(--color-font-light-3);
   transition: all 0.3s;
+  text-transform: capitalize;
 }
 
 .cartModalItemRemoveBtn:hover {
@@ -89,7 +90,7 @@
 
 .cartModalItemRemoveBtn:active {
   transform: scale(1);
-  color: var(--color-font-light-2);
+  color: var(--color-font-light-3);
 }
 
 @media only screen and (min-width: 36em) {

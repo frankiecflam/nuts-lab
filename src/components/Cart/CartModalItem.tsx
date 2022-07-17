@@ -3,7 +3,6 @@ import Image from "next/image";
 import { formatPrice } from "../../utils/helpers/index";
 import { Button } from "../UI";
 import { useCartContext } from "../../context/CartContext";
-import { useState } from "react";
 import { CartItem } from "../../types";
 
 interface CartModalItemProps {

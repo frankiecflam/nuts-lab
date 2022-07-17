@@ -3,9 +3,14 @@ import Image from "next/image";
 import { Logo_Black } from "../../assets/Images/Logos/index";
 import styles from "./HeaderNavBrand.module.css";
 
-const HeaderNavBrand = () => {
+interface HeaderNavBrandProps {
+  mobileActive: boolean;
+  onHide: () => void;
+}
+
+const HeaderNavBrand = ({ mobileActive, onHide }: HeaderNavBrandProps) => {
   return (
-    <div className={styles.navBrand}>
+    <div className={styles.navBrand} onClick={() => mobileActive && onHide()}>
       <Link href="/">
         <a>
           <Image

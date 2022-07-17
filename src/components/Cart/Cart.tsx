@@ -23,7 +23,7 @@ const Cart = () => {
     setTimeout(() => {
       setCartQuantityBump(false);
     }, 1000);
-  }, [cartQuantity]);
+  }, [hasMounted, cartQuantity]);
 
   if (!hasMounted) return null;
 

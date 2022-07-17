@@ -14,6 +14,7 @@ const CartModalBody = () => {
         <ul className={styles.cartList}>
           {items.map((item) => (
             <CartModalItem
+              key={item.id}
               id={item.id}
               title={item.title}
               price={item.price}

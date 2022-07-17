@@ -18,7 +18,10 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <HeaderNavBrand />
+        <HeaderNavBrand
+          mobileActive={mobileActive}
+          onHide={handleMobileActiveToggle}
+        />
         <HeaderNavList
           mobileActive={mobileActive}
           onHide={handleMobileActiveToggle}

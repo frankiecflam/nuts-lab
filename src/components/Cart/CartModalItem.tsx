@@ -1,5 +1,9 @@
 import styles from "./CartModalItem.module.css";
 import Image from "next/image";
+import { formatPrice } from "../../utils/helpers/index";
+import { Button } from "../UI";
+import { useCartContext } from "../../context/CartContext";
+import { useEffect, useState } from "react";
 
 interface CartModalItemProps {
   id: string;
@@ -9,6 +13,25 @@ interface CartModalItemProps {
 }
 
 const CartModalItem = ({ id, title, price, image }: CartModalItemProps) => {
+  const { quantity: currentItemQty } = useCartContext().items.filter(
+    (item) => item.id === id
+  )[0];
+  const [addToCartQty, setAddAddToCartQty] = useState(currentItemQty);
+
+  useEffect(() => {
+    setAddAddToCartQty(currentItemQty);
+  }, [currentItemQty]);
+
+  const handleItemQuantityIncrement = () => {
+    setAddAddToCartQty((prevState) => ++prevState);
+  };
+
+  const handleItemQuantityDecrement = () => {
+    setAddAddToCartQty((prevState) =>
+      prevState === 1 ? prevState : --prevState
+    );
+  };
+
   return (
     <li className={styles.cartModalItem}>
       <div className={styles.cartModalItemImageDiv}>
@@ -19,9 +42,33 @@ const CartModalItem = ({ id, title, price, image }: CartModalItemProps) => {
           className={styles.cartModalItemImage}
         />
       </div>
-      <div>
-        <p>{title}</p>
-        <p>{price}</p>
+      <div className={styles.cartModalItemText}>
+        <div className={styles.cartModalItemTextHeader}>
+          <p className={styles.cartModalItemTitle}>{title}</p>
+          <p className={styles.cartModalItemPrice}>{formatPrice(price)}</p>
+        </div>
+        <div className={styles.cartModalItemTextBody}>
+          <div className={styles.cartModalItemQtyDiv}>
+            <Button
+              type="button"
+              className={styles.cartModalItemQtyBtn}
+              name="-"
+              onClick={handleItemQuantityDecrement}
+            />
+            <p className={styles.addToCartQty}>{addToCartQty}</p>
+            <Button
+              type="button"
+              className={styles.cartModalItemQtyBtn}
+              name="+"
+              onClick={handleItemQuantityIncrement}
+            />
+          </div>
+          <Button
+            type="button"
+            name="remove"
+            className={styles.cartModalItemRemoveBtn}
+          />
+        </div>
       </div>
     </li>
   );

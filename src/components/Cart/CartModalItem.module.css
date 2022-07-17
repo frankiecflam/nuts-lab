@@ -1,12 +1,98 @@
 .cartModalItem {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  column-gap: 3rem;
 }
 
 .cartModalItemImageDiv {
+  min-width: 12rem;
   position: relative;
 }
 
 .cartModalItemImage {
   object-fit: cover;
+}
+
+.cartModalItemText {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5rem;
+}
+
+.cartModalItemTextHeader {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.cartModalItemTitle {
+  font-size: var(--font-size-2);
+  letter-spacing: 0.25rem;
+}
+
+.cartModalItemPrice {
+  font-size: var(--font-size-1);
+  letter-spacing: 0.25rem;
+  color: var(--color-font-light-1);
+}
+
+.cartModalItemTextBody {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  column-gap: 5rem;
+}
+
+.cartModalItemQtyDiv {
+  align-self: center;
+  border: 1px solid var(--color-font-light-2);
+  display: flex;
+  justify-content: space-between;
+  column-gap: 2rem;
+  align-items: center;
+}
+
+.cartModalItemQtyBtn {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  font-size: var(--font-size-2);
+  color: var(--color-font-light-2);
+  padding: 0.5rem 1rem;
+}
+
+.cartModalItemQtyBtn:hover {
+  box-shadow: none;
+  transform: scale(1.5);
+}
+
+.cartModalItemQtyBtn:active {
+  box-shadow: none;
+  transform: scale(1);
+}
+
+.cartModalItemRemoveBtn,
+.cartModalItemRemoveBtn:is(:active, :hover) {
+  font-size: var(--font-size-xs);
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid currentColor;
+  color: var(--color-font-light-2);
+  transition: all 0.3s;
+}
+
+.cartModalItemRemoveBtn:hover {
+  color: var(--color-font-main);
+  transform: scale(1.1);
+}
+
+.cartModalItemRemoveBtn:active {
+  transform: scale(1);
+  color: var(--color-font-light-2);
+}
+
+@media only screen and (min-width: 36em) {
+  .cartModalItemTextBody {
+    flex-direction: row;
+  }
 }

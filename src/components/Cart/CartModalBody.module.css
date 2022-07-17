@@ -16,8 +16,12 @@
 }
 
 .noItems {
-  place-self: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-size: var(--font-size-3);
   color: var(--color-font-light-2);
+  text-transform: capitalize;
 }

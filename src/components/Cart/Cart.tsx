@@ -1,7 +1,7 @@
 import styles from "./Cart.module.css";
 import { createPortal } from "react-dom";
 import { Overlay } from "../UI";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CartModal } from "./index";
 import { CartIcon } from "../../assets/Icons";
 import { useCartContext } from "../../context/CartContext";
@@ -9,8 +9,8 @@ import { calculateCartQuantity } from "../../utils/helpers";
 
 const Cart = () => {
   const [hasMounted, setHasMounted] = useState(false);
+  const isInitialRender = useRef(true);
   const [showCartModal, setShowCartModal] = useState(false);
-  const [cartQuantityBump, setCartQuantityBump] = useState(false);
   const cartQuantity = calculateCartQuantity(useCartContext().items);
 
   useEffect(() => {
@@ -19,10 +19,13 @@ const Cart = () => {
       return;
     }
 
-    setCartQuantityBump(true);
-    setTimeout(() => {
-      setCartQuantityBump(false);
-    }, 1000);
+    // showCartModal whenever there is an update on cartQty
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    } else {
+      setShowCartModal(true);
+    }
   }, [hasMounted, cartQuantity]);
 
   if (!hasMounted) return null;
@@ -35,15 +38,7 @@ const Cart = () => {
     <div className={styles.cart}>
       <div className={styles.cartIconDiv}>
         <CartIcon className={styles.cartIcon} onClick={handleCartModalToggle} />
-        <p
-          className={
-            cartQuantityBump
-              ? `${styles.cartIconQty} ${styles.bump}`
-              : styles.cartIconQty
-          }
-        >
-          {cartQuantity}
-        </p>
+        <p className={styles.cartIconQty}>{cartQuantity}</p>
       </div>
       {showCartModal &&
         createPortal(

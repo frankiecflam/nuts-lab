@@ -3,34 +3,28 @@ import Image from "next/image";
 import { formatPrice } from "../../utils/helpers/index";
 import { Button } from "../UI";
 import { useCartContext } from "../../context/CartContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { CartItem } from "../../types";
 
 interface CartModalItemProps {
-  id: string;
-  title: string;
-  price: number;
-  image: string;
+  item: CartItem;
 }
 
-const CartModalItem = ({ id, title, price, image }: CartModalItemProps) => {
+const CartModalItem = ({ item }: CartModalItemProps) => {
+  const { id, title, price, image } = item;
+
   const { quantity: currentItemQty } = useCartContext().items.filter(
     (item) => item.id === id
   )[0];
-  const [addToCartQty, setAddAddToCartQty] = useState(currentItemQty);
+
   const { addItem, removeItem } = useCartContext();
 
-  useEffect(() => {
-    setAddAddToCartQty(currentItemQty);
-  }, [currentItemQty]);
-
   const handleItemQuantityIncrement = () => {
-    setAddAddToCartQty((prevState) => ++prevState);
+    // If incrementing by button click, qty should be up by 1
+    addItem(item, 1);
   };
 
   const handleItemQuantityDecrement = () => {
-    setAddAddToCartQty((prevState) =>
-      prevState === 1 ? prevState : --prevState
-    );
     removeItem(id);
   };
 
@@ -61,7 +55,7 @@ const CartModalItem = ({ id, title, price, image }: CartModalItemProps) => {
               name="-"
               onClick={handleItemQuantityDecrement}
             />
-            <p className={styles.addToCartQty}>{addToCartQty}</p>
+            <p className={styles.addToCartQty}>{currentItemQty}</p>
             <Button
               type="button"
               className={styles.cartModalItemQtyBtn}

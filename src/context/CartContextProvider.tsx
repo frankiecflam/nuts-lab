@@ -10,7 +10,10 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleAddItem = (productItem: Product, addToCartQuantity: number) => {
+  const handleAddItem = (
+    productItem: Product | Omit<Product, "description" | "topPick">,
+    addToCartQuantity: number
+  ) => {
     // Check if item already exists in cart
     const itemAlreadyExist = items.find((item) => item.id === productItem.id);
     // If no, update items and price states

@@ -5,7 +5,7 @@ import { Product } from "../../types/index";
 import Image from "next/image";
 import { formatPrice } from "../../utils/helpers/index";
 import { Button } from "../UI/index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCartContext } from "../../context/CartContext";
 import { ProductDetailsRecommendations } from "./index";
 
@@ -20,6 +20,11 @@ const ProductDetailsContent = ({
 }: ProductDetailsContentProps) => {
   const [addToCartQty, setAddAddToCartQty] = useState(1);
   const { addItem } = useCartContext();
+
+  useEffect(() => {
+    // reset addToCartQty if productId changes upon a page switch
+    setAddAddToCartQty(1);
+  }, [product.id]);
 
   const handleAddItemToCart = () => {
     addItem(product, addToCartQty);

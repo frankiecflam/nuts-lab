@@ -6,13 +6,20 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+
+  /* For Firefox */
+  scrollbar-width: none;
+}
+
+.cartModalBody::-webkit-scrollbar {
+  display: none;
 }
 
 .cartList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  row-gap: 2rem;
+  row-gap: 8rem;
 }
 
 .noItems {

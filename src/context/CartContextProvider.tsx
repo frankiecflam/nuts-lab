@@ -47,7 +47,7 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
     }
   };
 
-  const handleRemoveItem = (producItemtId: string) => {
+  const handleRemoveItem = (producItemtId: string, removeAll?: boolean) => {
     // If existingQty === 1, then remove; otherwise, update Qty; UPDATE totalPrice at the end
     const existingItem = items.find((item) => item.id === producItemtId);
 
@@ -55,7 +55,7 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
 
     const currentExistingItemQty = existingItem.quantity;
 
-    if (currentExistingItemQty === 1) {
+    if (currentExistingItemQty === 1 || removeAll) {
       setItems((prevState) =>
         prevState.filter((item) => item.id !== producItemtId)
       );
@@ -68,9 +68,13 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
         ...prevState.filter((item) => item.id !== existingItem.id),
         updatedExistingItem,
       ]);
-
-      setTotalPrice((prevState) => (prevState -= existingItem.price));
     }
+
+    setTotalPrice((prevState) =>
+      removeAll
+        ? (prevState -= existingItem.price * currentExistingItemQty)
+        : (prevState -= existingItem.price)
+    );
   };
 
   const CartContextAPI = {

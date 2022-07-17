@@ -5,14 +5,14 @@ interface CartContextInterface {
   items: CartItem[];
   totalPrice: number;
   addItem: (productItem: Product, addToCartQuantity: number) => void;
-  removeItem: (id: string) => void;
+  removeItem: (producItemtId: string, removeAll?: boolean) => void;
 }
 
 const CartContext = createContext<CartContextInterface>({
   items: [],
   totalPrice: 0,
   addItem: (productItem: Product, addToCartQuantity: number) => {},
-  removeItem: (producItemtId: string) => {},
+  removeItem: (producItemtId: string, removeAll?: boolean) => {},
 });
 
 export default CartContext;

@@ -17,6 +17,7 @@ const CartModalItem = ({ id, title, price, image }: CartModalItemProps) => {
     (item) => item.id === id
   )[0];
   const [addToCartQty, setAddAddToCartQty] = useState(currentItemQty);
+  const { addItem, removeItem } = useCartContext();
 
   useEffect(() => {
     setAddAddToCartQty(currentItemQty);
@@ -30,6 +31,11 @@ const CartModalItem = ({ id, title, price, image }: CartModalItemProps) => {
     setAddAddToCartQty((prevState) =>
       prevState === 1 ? prevState : --prevState
     );
+    removeItem(id);
+  };
+
+  const handleItemRemove = () => {
+    removeItem(id, true);
   };
 
   return (
@@ -67,6 +73,7 @@ const CartModalItem = ({ id, title, price, image }: CartModalItemProps) => {
             type="button"
             name="remove"
             className={styles.cartModalItemRemoveBtn}
+            onClick={handleItemRemove}
           />
         </div>
       </div>

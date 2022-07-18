@@ -8,6 +8,7 @@ interface InputProps {
   required?: boolean;
   value?: string | undefined;
   minLength?: number;
+  disabled?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
@@ -19,6 +20,7 @@ const Input = ({
   type,
   required,
   value,
+  disabled,
   minLength,
   onChange,
   onFocus,
@@ -31,6 +33,7 @@ const Input = ({
       type={type}
       value={value}
       minLength={minLength}
+      disabled={disabled}
       required={required}
       onChange={onChange}
       onFocus={onFocus}

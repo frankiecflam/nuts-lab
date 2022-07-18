@@ -6,3 +6,4 @@ export { BsTwitter as TwitterIcon } from "react-icons/bs";
 export { AiOutlineInstagram as InstagramIcon } from "react-icons/ai";
 export { AiOutlineUser as AccountIcon } from "react-icons/ai";
 export { BsCart as CartIcon } from "react-icons/bs";
+export { AiOutlineStop as InmuutableIcon } from "react-icons/ai";

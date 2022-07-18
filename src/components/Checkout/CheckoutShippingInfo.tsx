@@ -7,32 +7,40 @@ import {
   authEmailInput,
   authPhoneInput,
 } from "../../utils/helpers";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { User } from "../../types";
 
-const CheckoutShippingInfo = () => {
+interface CheckoutShippingInfoProps {
+  user: User | undefined;
+}
+
+const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   const {
     inputValue: nameInputState,
     inputIsValid: nameInputValid,
     onChange: nameInputChange,
-    onFocus: nameInputFocus,
     onBlur: nameInputBlur,
     onReset: nameInputReset,
-  } = useInput({ authenticate: authTextInput });
+  } = useInput({
+    authenticate: authTextInput,
+    initialInputValue: user ? user.name : "",
+  });
 
   const {
     inputValue: emailInputState,
     inputIsValid: emailInputValid,
     onChange: emailInputChange,
-    onFocus: emailInputFocus,
     onBlur: emailInputBlur,
     onReset: emailInputReset,
-  } = useInput({ authenticate: authEmailInput });
+  } = useInput({
+    authenticate: authEmailInput,
+    initialInputValue: user ? user.email : "",
+  });
 
   const {
     inputValue: addressInputState,
     inputIsValid: addressInputValid,
     onChange: addressInputChange,
-    onFocus: addressInputFocus,
     onBlur: addressInputBlur,
     onReset: addressInputReset,
   } = useInput({ authenticate: authTextInput });
@@ -45,6 +53,8 @@ const CheckoutShippingInfo = () => {
     onBlur: phoneInputBlur,
     onReset: phoneInputReset,
   } = useInput({ authenticate: authPhoneInput });
+
+  const [formFeedback, setFormFeedback] = useState("");
 
   const formValidity =
     nameInputValid && emailInputValid && addressInputValid && phoneInputValid;
@@ -63,6 +73,11 @@ const CheckoutShippingInfo = () => {
 
     // Submit order to the DB
 
+    // Show form feedback to user (Return order no#)
+    setFormFeedback("Thank you for your order!");
+
+    // Reset cartContext
+
     // Reset all input fields upon successful submission
     resetAllInputFields();
   };
@@ -71,7 +86,6 @@ const CheckoutShippingInfo = () => {
     <div className={styles.shippingInfo}>
       <h2 className={styles.shippingHeading}>Shipping Information</h2>
       <form className={styles.shippingForm} onSubmit={handleFormSubmit}>
-        {/* Name, emailAddress, address, phone  */}
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.shippingInputLabel}>
             name
@@ -135,6 +149,7 @@ const CheckoutShippingInfo = () => {
           className={styles.shippingSubmitBtn}
         />
       </form>
+      {formFeedback && <p className={styles.formFeedback}>{formFeedback}</p>}
     </div>
   );
 };

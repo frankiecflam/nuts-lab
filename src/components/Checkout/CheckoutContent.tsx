@@ -4,8 +4,13 @@ import { Button, Container } from "../UI/index";
 import { CheckoutShippingInfo, CheckoutOrderSummary } from "./index";
 import { useCartContext } from "../../context/CartContext";
 import Link from "next/link";
+import { User } from "../../types";
 
-const CheckoutContent = () => {
+interface CheckoutContentProps {
+  user: User | undefined;
+}
+
+const CheckoutContent = ({ user }: CheckoutContentProps) => {
   const { items } = useCartContext();
   const isCartEmpty = items.length === 0;
 
@@ -28,7 +33,7 @@ const CheckoutContent = () => {
           )}
           {!isCartEmpty && (
             <>
-              <CheckoutShippingInfo />
+              <CheckoutShippingInfo user={user} />
               <CheckoutOrderSummary />
             </>
           )}

@@ -15,6 +15,6 @@
 @media only screen and (min-width: 48em) {
   .accountDetailsBody {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 10rem;
+    column-gap: 5rem;
   }
 }

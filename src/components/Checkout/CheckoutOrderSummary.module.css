@@ -44,7 +44,7 @@
 .summaryItemList.active {
   opacity: 1;
   height: auto;
-  padding: 2rem 0;
+
   overflow: visible;
   visibility: visible;
 }
@@ -61,6 +61,22 @@
 }
 .summaryItemImage {
   object-fit: cover;
+}
+.summaryItemQty {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  background-color: var(--color-dominant-lighter);
+  width: 2.2rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  z-index: 1;
+  color: var(--color-dominant-darker);
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .summaryFooter {
@@ -102,7 +118,6 @@
   .summaryItemList {
     opacity: 1;
     height: auto;
-    padding: 2rem 0;
     overflow: visible;
     visibility: visible;
   }

@@ -23,15 +23,13 @@
   font-weight: 500;
 }
 
-.detailsItemAddBtn {
-  background-color: var(--color-dominant-lighter);
-  justify-self: flex-start;
-  padding: 0.5rem 1rem;
-  text-transform: capitalize;
+.itemDataBlank {
+  color: var(--color-font-light-3);
 }
 
-@media only screen and (min-width: 48em) {
-  .details {
-    align-items: stretch;
-  }
+.detailsEditBtn {
+  margin-top: 3rem;
+  background-color: var(--color-dominant-lighter);
+  align-self: center;
+  text-transform: uppercase;
 }

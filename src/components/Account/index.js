@@ -12,3 +12,4 @@ export { default as AccountUserInfo } from "./AccountUserInfo";
 export { default as AccountOrderHistory } from "./AccountOrderHistory";
 export { default as AccountLogoutBtn } from "./AccountLogoutBtn";
 export { default as AccountDetailsHeader } from "./AccountDetailsHeader";
+export { default as AccountUserInfoEditForm } from "./AccountUserInfoEditForm";

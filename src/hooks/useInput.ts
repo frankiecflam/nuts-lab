@@ -58,13 +58,14 @@ const inputReducer = (state: InputState, action: ActionType): InputState => {
 
 interface UserInputProps {
   authenticate?: (value: string) => boolean;
+  initialInputValue?: string;
 }
 
-const useInput = ({ authenticate }: UserInputProps) => {
-  const [inputState, inputDispatch] = useReducer(
-    inputReducer,
-    inputInitialState
-  );
+const useInput = ({ authenticate, initialInputValue }: UserInputProps) => {
+  const [inputState, inputDispatch] = useReducer(inputReducer, {
+    ...inputInitialState,
+    inputValue: initialInputValue ? initialInputValue : "",
+  });
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

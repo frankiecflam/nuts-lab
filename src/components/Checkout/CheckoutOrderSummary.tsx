@@ -41,10 +41,11 @@ const CheckoutOrderSummary = () => {
                   className={styles.summaryItemImage}
                   layout="fill"
                 />
+                <p className={styles.summaryItemQty}>{item.quantity}</p>
               </div>
               <p className={styles.summaryItemTitle}>{item.title}</p>
               <p className={styles.summaryItemPrice}>
-                {formatPrice(item.price)}
+                {formatPrice(item.price * item.quantity)}
               </p>
             </li>
           ))}

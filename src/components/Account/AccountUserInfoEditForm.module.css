@@ -1,0 +1,103 @@
+.editForm {
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5rem;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.editFormInputLabel {
+  position: absolute;
+  top: -20%;
+  padding-left: 1rem;
+  text-transform: uppercase;
+  color: var(--color-font-light-2);
+  letter-spacing: 0.25rem;
+  font-size: var(--font-size-xs);
+}
+
+.editFormInput {
+  min-width: 30rem;
+}
+
+.editFormInput:disabled {
+  background-color: transparent;
+}
+
+.immutableIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  transform: translateY(-50%);
+}
+
+.immutableIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--color-dominant-darker);
+}
+
+.immutableIcon::after {
+  cursor: initial;
+  padding-left: 1rem;
+  content: "Email address can't be changed.";
+  position: absolute;
+  top: -100%;
+  right: 0;
+  width: 15rem;
+  transform: translateY(-50%);
+  font-size: var(--font-size-xs);
+  color: var(--color-font-light-1);
+  transition: all 0.3s;
+  text-align: right;
+}
+
+.editFormBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 3rem;
+}
+
+.editFormSaveBtn,
+.editFormCancelBtn {
+  align-self: center;
+}
+
+.editFormCancelBtn {
+  background-color: var(--color-dominant-lighter);
+  color: var(--color-dominant-darker);
+}
+
+.editFormSaveBtn {
+  color: var(--color-dominant-lighter);
+  background-color: var(--color-dominant-darker);
+}
+
+.editFormFeedback {
+  text-align: center;
+  color: var(--color-font-light-1);
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 48em) {
+  .editFormInput {
+    min-width: 45rem;
+  }
+}
+
+@media (hover: hover) {
+  .immutableIcon::after {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .immutableIcon:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -17,7 +17,7 @@ const CartModal = ({ onCloseModal, showCartModal }: CartModalProps) => {
     >
       <CartModalHeader onCloseModal={onCloseModal} />
       <CartModalBody />
-      <CartModalFooter />
+      <CartModalFooter onCloseModal={onCloseModal} />
     </div>
   );
 };

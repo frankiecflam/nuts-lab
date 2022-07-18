@@ -3,7 +3,7 @@ import { Customer_1, Customer_2, Customer_3 } from "../../assets/Images/Home";
 import { TestimonialsItem } from "./index";
 import { useState, useEffect } from "react";
 import { LeftArrowIcon, RightArrowIcon } from "../../assets/Icons";
-import POSITION_CONSTRAINTS from "../../utils/constants/slidingPosition";
+import { SLIDING_POSITION } from "../../utils/constants/index";
 
 const TestimonialsList = () => {
   const [currentSlidingPosition, setCurrentSlidingPosition] = useState(0);
@@ -20,8 +20,8 @@ const TestimonialsList = () => {
 
   const handleSlideToLeft = () => {
     setCurrentSlidingPosition((prevState) => {
-      if (prevState - 1 < POSITION_CONSTRAINTS.min) {
-        return POSITION_CONSTRAINTS.max;
+      if (prevState - 1 < SLIDING_POSITION.min) {
+        return SLIDING_POSITION.max;
       }
       return --prevState;
     });
@@ -29,8 +29,8 @@ const TestimonialsList = () => {
 
   const handleSlideToRight = () => {
     setCurrentSlidingPosition((prevState) => {
-      if (prevState + 1 > POSITION_CONSTRAINTS.max) {
-        return POSITION_CONSTRAINTS.min;
+      if (prevState + 1 > SLIDING_POSITION.max) {
+        return SLIDING_POSITION.min;
       }
       return ++prevState;
     });

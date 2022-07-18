@@ -1,6 +1,6 @@
-const POSITION_CONSTRAINTS = {
+const SLIDING_POSITION = {
   max: 2,
   min: 0,
 };
 
-export default POSITION_CONSTRAINTS;
+export default SLIDING_POSITION;

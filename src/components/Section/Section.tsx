@@ -1,4 +1,3 @@
-import styles from "./Section.module.css";
 import { FC } from "react";
 
 interface SectionProps {
@@ -7,9 +6,7 @@ interface SectionProps {
 }
 
 const Section: FC<SectionProps> = ({ children, className }) => {
-  const classes = className ? `${styles.section} ${className}` : styles.section;
-
-  return <section className={classes}>{children}</section>;
+  return <section className={className && className}>{children}</section>;
 };
 
 export default Section;

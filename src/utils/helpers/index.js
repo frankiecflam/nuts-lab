@@ -5,7 +5,7 @@ export { default as authEmailInput } from "./authEmailInput";
 export { default as authPasswordInput } from "./authPasswordInput";
 export { default as verifyIdToken } from "./verifyIdToken";
 export { default as getUserDetails } from "./getUserDetails";
-export { default as getActiveOrder } from "./getActiveOrder";
 export { default as getProducts } from "./getProducts";
 export { default as calculateCartQuantity } from "./calculateCartQuantity";
 export { default as getRecommendedProducts } from "./getRecommendedProducts";
+export { default as authPhoneInput } from "./authPhoneInput";

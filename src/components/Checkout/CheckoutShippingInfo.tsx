@@ -43,16 +43,21 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
     onChange: addressInputChange,
     onBlur: addressInputBlur,
     onReset: addressInputReset,
-  } = useInput({ authenticate: authTextInput });
+  } = useInput({
+    authenticate: authTextInput,
+    initialInputValue: user ? user.address : "",
+  });
 
   const {
     inputValue: phoneInputState,
     inputIsValid: phoneInputValid,
     onChange: phoneInputChange,
-    onFocus: phoneInputFocus,
     onBlur: phoneInputBlur,
     onReset: phoneInputReset,
-  } = useInput({ authenticate: authPhoneInput });
+  } = useInput({
+    authenticate: authPhoneInput,
+    initialInputValue: user ? user.phone : "",
+  });
 
   const [formFeedback, setFormFeedback] = useState("");
 

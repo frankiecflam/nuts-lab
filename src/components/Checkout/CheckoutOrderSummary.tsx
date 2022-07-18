@@ -40,6 +40,7 @@ const CheckoutOrderSummary = () => {
                   src={item.image}
                   className={styles.summaryItemImage}
                   layout="fill"
+                  alt={`picture of ${item.title}`}
                 />
                 <p className={styles.summaryItemQty}>{item.quantity}</p>
               </div>

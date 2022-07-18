@@ -9,16 +9,17 @@ import { User } from "../../types/index";
 
 interface AccountDetailsProps {
   user: User;
+  onSetUserDetails: (user: User) => void;
 }
 
-const AccountDetails = ({ user }: AccountDetailsProps) => {
+const AccountDetails = ({ user, onSetUserDetails }: AccountDetailsProps) => {
   return (
     <>
       <SectionHeader title="account">
         <h2 className={styles.accountSubheading}>Hello, {user.name}!</h2>
       </SectionHeader>
       <SectionBody className={styles.accountDetailsBody}>
-        <AccountUserInfo user={user} />
+        <AccountUserInfo user={user} onSetUserDetails={onSetUserDetails} />
         <AccountOrderHistory />
         <AccountLogoutBtn />
       </SectionBody>

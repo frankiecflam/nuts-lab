@@ -6,9 +6,10 @@ import { useState } from "react";
 
 interface AccountUserInfoProps {
   user: User;
+  onSetUserDetails: (user: User) => void;
 }
 
-const AccountUserInfo = ({ user }: AccountUserInfoProps) => {
+const AccountUserInfo = ({ user, onSetUserDetails }: AccountUserInfoProps) => {
   const { name, email, phone, address } = user;
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -54,6 +55,7 @@ const AccountUserInfo = ({ user }: AccountUserInfoProps) => {
           <AccountUserInfoEditForm
             user={user}
             onHide={handleShowEditFormToggle}
+            onSetUserDetails={onSetUserDetails}
           />
         )}
       </div>

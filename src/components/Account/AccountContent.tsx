@@ -38,7 +38,12 @@ const AccountContent = ({ user }: AccountContentProps) => {
             onSetUserDetails={handleSetUserDetails}
           />
         )}
-        {isLoggedIn && userDetails && <AccountDetails user={userDetails} />}
+        {isLoggedIn && userDetails && (
+          <AccountDetails
+            user={userDetails}
+            onSetUserDetails={handleSetUserDetails}
+          />
+        )}
       </Container>
     </Section>
   );

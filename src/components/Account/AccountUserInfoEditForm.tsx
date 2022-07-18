@@ -6,17 +6,20 @@ import { useInput } from "../../hooks/index";
 import { authTextInput, authPhoneInput } from "../../utils/helpers/index";
 import { InmuutableIcon } from "../../assets/Icons/index";
 import { FormEvent, useState } from "react";
+import { getUserDbKeyById } from "../../utils/helpers/index";
 
 interface AccountUserInfoEditFormProps {
   user: User;
   onHide: () => void;
+  onSetUserDetails: (user: User) => void;
 }
 
 const AccountUserInfoEditForm = ({
   user,
   onHide,
+  onSetUserDetails,
 }: AccountUserInfoEditFormProps) => {
-  const { name, email, phone, address } = user;
+  const { id, name, email, phone, address } = user;
   const [formFeedback, setFormFeedback] = useState("");
 
   const {
@@ -35,6 +38,7 @@ const AccountUserInfoEditForm = ({
   const {
     inputValue: phoneInputState,
     inputIsValid: phoneInputValid,
+    inputIsTouched: phoneInputIsTouched,
     onChange: phoneInputChange,
     onBlur: phoneInputBlur,
     onReset: phoneInputReset,
@@ -43,6 +47,7 @@ const AccountUserInfoEditForm = ({
   const {
     inputValue: addressInputState,
     inputIsValid: addressInputValid,
+    inputIsTouched: addressInputIsTouched,
     onChange: addressInputChange,
     onBlur: addressInputBlur,
     onReset: addressInputReset,
@@ -55,28 +60,52 @@ const AccountUserInfoEditForm = ({
     addressInputReset();
   };
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // nameInputValid remains invalid by default if untouched
+    //   Only check if field is touched
     const formValidity = nameInputIsTouched
-      ? nameInputValid && phoneInputValid && addressInputValid
-      : phoneInputValid && addressInputValid;
+      ? nameInputValid
+      : true && phoneInputIsTouched
+      ? phoneInputValid
+      : true && addressInputIsTouched
+      ? addressInputValid
+      : true;
 
     if (!formValidity) {
       setFormFeedback("Input fields are incorrect.");
       return;
     }
 
-    // update DB
-    console.log(name, email, phone, address);
+    const userDBKey = await getUserDbKeyById(id);
+    const userUpdatedData: User = {
+      ...user,
+      name: nameInputState,
+      email: emailInputState,
+      phone: phoneInputState,
+      address: addressInputState,
+    };
 
-    // update userData in AccountDetails
+    // update DB
+    const updateRes = await fetch("api/updateUserData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userDBKey,
+        userData: userUpdatedData,
+      }),
+    });
+
+    // client-side updating userData in AccountDetails
+    onSetUserDetails(userUpdatedData);
+
+    // Reset all input fields
+    handleResetAllInputFields();
 
     // hide Edit Form upon successful update
     onHide();
-    // Reset all input fields
-    handleResetAllInputFields();
   };
 
   return (

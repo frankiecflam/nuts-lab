@@ -8,9 +8,10 @@ import {
   authPhoneInput,
 } from "../../utils/helpers";
 import { FormEvent, useState } from "react";
-import { User } from "../../types";
+import { User, Order } from "../../types";
 import Link from "next/link";
 import { useCartContext } from "../../context/CartContext";
+import { v4 as uuidv4 } from "uuid";
 
 interface CheckoutShippingInfoProps {
   user: User | undefined;
@@ -66,7 +67,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   });
 
   const [formFeedback, setFormFeedback] = useState("");
-  const { resetCartContext } = useCartContext();
+  const { items, totalPrice, resetCartContext } = useCartContext();
 
   const resetAllInputFields = () => {
     nameInputReset();
@@ -75,7 +76,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
     phoneInputReset();
   };
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     // If user is logged in, input fields which get automatically pre-filled should be deemed valid as long as all remain untouched
@@ -101,6 +102,27 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
     }
 
     // Submit order to the DB
+    const order: Order = {
+      id: `orders-${uuidv4()}`,
+      items: items,
+      price: totalPrice,
+      customerEmail: emailInputState,
+    };
+
+    const submitOrderRes = await fetch("api/submitOrder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ order }),
+    });
+
+    if (!submitOrderRes.ok) {
+      setFormFeedback(
+        "Sorry! Something went wrong submitting your order. Please contact us."
+      );
+      return;
+    }
 
     // Show form feedback to user (Return order no#)
     setFormFeedback("Thank you for your order!");

@@ -4,13 +4,14 @@ import { Container } from "../UI/index";
 import { AccountSignup, AccountLogin, AccountDetails } from "./index";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
-import { User } from "../../types/index";
+import { User, Order } from "../../types/index";
 
 interface AccountContentProps {
   user: User;
+  submittedOrders: Order[] | null;
 }
 
-const AccountContent = ({ user }: AccountContentProps) => {
+const AccountContent = ({ user, submittedOrders }: AccountContentProps) => {
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userDetails, setUserDetails] = useState(user);
   const { isLoggedIn } = useAuthContext();
@@ -41,6 +42,7 @@ const AccountContent = ({ user }: AccountContentProps) => {
         {isLoggedIn && userDetails && (
           <AccountDetails
             user={userDetails}
+            submittedOrders={submittedOrders}
             onSetUserDetails={handleSetUserDetails}
           />
         )}

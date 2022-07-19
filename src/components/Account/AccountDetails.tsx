@@ -5,14 +5,19 @@ import {
   AccountOrderHistory,
   AccountLogoutBtn,
 } from "./index";
-import { User } from "../../types/index";
+import { User, Order } from "../../types/index";
 
 interface AccountDetailsProps {
   user: User;
+  submittedOrders: Order[] | null;
   onSetUserDetails: (user: User) => void;
 }
 
-const AccountDetails = ({ user, onSetUserDetails }: AccountDetailsProps) => {
+const AccountDetails = ({
+  user,
+  submittedOrders,
+  onSetUserDetails,
+}: AccountDetailsProps) => {
   return (
     <>
       <SectionHeader title="account">
@@ -20,7 +25,7 @@ const AccountDetails = ({ user, onSetUserDetails }: AccountDetailsProps) => {
       </SectionHeader>
       <SectionBody className={styles.accountDetailsBody}>
         <AccountUserInfo user={user} onSetUserDetails={onSetUserDetails} />
-        <AccountOrderHistory />
+        <AccountOrderHistory submittedOrders={submittedOrders} />
         <AccountLogoutBtn />
       </SectionBody>
     </>

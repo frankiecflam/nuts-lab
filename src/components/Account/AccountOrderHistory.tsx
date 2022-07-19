@@ -1,7 +1,12 @@
 import styles from "./AccountOrderHistory.module.css";
 import { AccountDetailsHeader } from "./index";
+import { Order } from "../../types/index";
 
-const AccountOrderHistory = () => {
+interface AccountOrderHistoryProps {
+  submittedOrders: Order[] | null;
+}
+
+const AccountOrderHistory = ({ submittedOrders }: AccountOrderHistoryProps) => {
   return (
     <div>
       <AccountDetailsHeader name="order history" />

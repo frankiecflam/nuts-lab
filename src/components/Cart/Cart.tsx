@@ -11,9 +11,9 @@ const Cart = () => {
   const [hasMounted, setHasMounted] = useState(false);
   const isInitialRender = useRef(true);
   const [showCartModal, setShowCartModal] = useState(false);
-  const cartContext = useCartContext();
+  const { items, status: cartStatus } = useCartContext();
 
-  const cartQuantity = calculateCartQuantity(useCartContext().items);
+  const cartQuantity = calculateCartQuantity(items);
 
   useEffect(() => {
     if (!hasMounted) {
@@ -27,12 +27,13 @@ const Cart = () => {
       return;
     } else {
       // If order has just been submitted, don't toggle
-      if (cartContext.status === "submitted") {
+      if (cartStatus === "submitted") {
+        isInitialRender.current = true;
         return;
       }
       setShowCartModal(true);
     }
-  }, [hasMounted, cartQuantity]);
+  }, [hasMounted, cartQuantity, cartStatus]);
 
   if (!hasMounted) return null;
 

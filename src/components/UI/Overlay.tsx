@@ -1,7 +1,7 @@
 import styles from "./Overlay.module.css";
 
 interface OverlayProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Overlay = ({ onClick }: OverlayProps) => {

@@ -1,0 +1,29 @@
+.orderHistoryList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}
+
+.orderHistoryListHeader {
+  display: grid;
+  grid-template-columns: 10rem 10rem 1fr auto;
+  align-items: center;
+  column-gap: 3rem;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 0 0 1rem 0;
+  border-bottom: 1px solid var(--color-dominant-lighter);
+  font-weight: 500;
+  color: var(--color-font-light-2);
+}
+
+.orderHistoryListHeader > :last-child {
+  display: none;
+}
+
+@media only screen and (min-width: 36em) {
+  .orderHistoryListHeader > :last-child {
+    display: block;
+  }
+}

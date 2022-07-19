@@ -1,0 +1,12 @@
+.orderHistory {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  align-items: center;
+}
+
+.orderHistoryEmpty {
+  color: var(--color-font-light-2);
+  font-weight: 500;
+  font-size: var(--font-size-1);
+}

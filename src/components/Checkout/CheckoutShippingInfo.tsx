@@ -104,6 +104,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
     // Submit order to the DB
     const order: Order = {
       id: `orders-${uuidv4()}`,
+      date: new Date(),
       items: items,
       price: totalPrice,
       customerEmail: emailInputState,

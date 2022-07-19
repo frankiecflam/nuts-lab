@@ -57,7 +57,7 @@ const Cart = () => {
           onCloseModal={handleCartModalToggle}
           showCartModal={showCartModal}
         />,
-        document.getElementById("overlay-root")! as HTMLDivElement
+        document.getElementById("modal-root")! as HTMLDivElement
       )}
     </div>
   );

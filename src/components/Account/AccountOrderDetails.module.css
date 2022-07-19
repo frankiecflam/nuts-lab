@@ -1,0 +1,6 @@
+.orderViewDetailsBtn {
+  padding: 0.5rem 1rem;
+  text-transform: lowercase;
+  background-color: var(--color-dominant-lighter);
+  color: var(--color-dominant-darker);
+}

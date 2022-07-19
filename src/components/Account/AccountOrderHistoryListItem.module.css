@@ -1,0 +1,23 @@
+.orderHistoryItem {
+  display: grid;
+  grid-template-columns: 10rem 10rem 1fr auto;
+  column-gap: 3rem;
+  align-items: center;
+  text-align: center;
+}
+
+.orderHistoryItemDetailsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderHistoryItem > :last-child {
+  display: none;
+}
+
+@media only screen and (min-width: 36em) {
+  .orderHistoryItem > :last-child {
+    display: block;
+  }
+}

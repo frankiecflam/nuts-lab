@@ -4,6 +4,7 @@ export default interface Order {
   id: string;
   items: CartItem[];
   price: number;
+  date: Date;
   customerEmail: string;
 }
 

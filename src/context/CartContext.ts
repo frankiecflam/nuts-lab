@@ -9,6 +9,7 @@ interface CartContextInterface {
     addToCartQuantity: number
   ) => void;
   removeItem: (producItemtId: string, removeAll?: boolean) => void;
+  resetCartContext: () => void;
 }
 
 const CartContext = createContext<CartContextInterface>({
@@ -19,6 +20,7 @@ const CartContext = createContext<CartContextInterface>({
     addToCartQuantity: number
   ) => {},
   removeItem: (producItemtId: string, removeAll?: boolean) => {},
+  resetCartContext: () => {},
 });
 
 export default CartContext;

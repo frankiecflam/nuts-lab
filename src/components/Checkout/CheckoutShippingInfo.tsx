@@ -19,6 +19,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   const {
     inputValue: nameInputState,
     inputIsValid: nameInputValid,
+    inputIsTouched: nameInputTouched,
     onChange: nameInputChange,
     onBlur: nameInputBlur,
     onReset: nameInputReset,
@@ -30,6 +31,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   const {
     inputValue: emailInputState,
     inputIsValid: emailInputValid,
+    inputIsTouched: emailInputTouched,
     onChange: emailInputChange,
     onBlur: emailInputBlur,
     onReset: emailInputReset,
@@ -41,6 +43,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   const {
     inputValue: addressInputState,
     inputIsValid: addressInputValid,
+    inputIsTouched: addressInputTouched,
     onChange: addressInputChange,
     onBlur: addressInputBlur,
     onReset: addressInputReset,
@@ -52,6 +55,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   const {
     inputValue: phoneInputState,
     inputIsValid: phoneInputValid,
+    inputIsTouched: phoneInputTouched,
     onChange: phoneInputChange,
     onBlur: phoneInputBlur,
     onReset: phoneInputReset,
@@ -61,9 +65,6 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   });
 
   const [formFeedback, setFormFeedback] = useState("");
-
-  const formValidity =
-    nameInputValid && emailInputValid && addressInputValid && phoneInputValid;
 
   const resetAllInputFields = () => {
     nameInputReset();
@@ -75,7 +76,27 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!formValidity) return;
+    // If user is logged in, input fields which get automatically pre-filled should be deemed valid as long as all remain untouched
+    // If not logged in, use inputValid
+    const formValidity: boolean = user
+      ? nameInputTouched
+        ? nameInputValid
+        : true && emailInputTouched
+        ? emailInputValid
+        : true && phoneInputTouched
+        ? phoneInputValid
+        : true && addressInputTouched
+        ? addressInputValid
+        : true
+      : nameInputValid &&
+        emailInputValid &&
+        phoneInputValid &&
+        addressInputValid;
+
+    if (!formValidity) {
+      setFormFeedback("Inputs are incorrect. Please try again!");
+      return;
+    }
 
     // Submit order to the DB
 

@@ -105,11 +105,17 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
     );
   };
 
+  const handleResetCartContext = () => {
+    setItems([]);
+    setTotalPrice(0);
+  };
+
   const CartContextAPI = {
     items,
     totalPrice,
     addItem: handleAddItem,
     removeItem: handleRemoveItem,
+    resetCartContext: handleResetCartContext,
   };
 
   return (

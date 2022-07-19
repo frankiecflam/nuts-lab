@@ -9,6 +9,7 @@ import {
 } from "../../utils/helpers";
 import { FormEvent, useState } from "react";
 import { User } from "../../types";
+import Link from "next/link";
 
 interface CheckoutShippingInfoProps {
   user: User | undefined;
@@ -89,7 +90,26 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
 
   return (
     <div className={styles.shippingInfo}>
-      <h2 className={styles.shippingHeading}>Shipping Information</h2>
+      <header className={styles.shippingHeader}>
+        <h2 className={styles.shippingHeading}>Shipping Information</h2>
+        <div className={styles.shippingLogin}>
+          {user && (
+            <p>
+              You are now logged in as <Link href="/account">{user.name}</Link>{" "}
+              &#40;
+              {user.email}&#41;.
+            </p>
+          )}
+          {!user && (
+            <>
+              <p>Already have an account?</p>
+              <Link href="/account">
+                <a className={styles.shippingLoginLink}>log in</a>
+              </Link>
+            </>
+          )}
+        </div>
+      </header>
       <form className={styles.shippingForm} onSubmit={handleFormSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.shippingInputLabel}>

@@ -42,9 +42,7 @@ const AccountUserInfo = ({ user, onSetUserDetails }: AccountUserInfoProps) => {
             </li>
             <li className={styles.detailsItem}>
               <p className={styles.itemName}>address&#58;</p>
-              {address && (
-                <address className={styles.itemData}>{address}</address>
-              )}
+              {address && <p className={styles.itemData}>{address}</p>}
               {!address && (
                 <p className={styles.itemDataBlank}>No addresses saved yet</p>
               )}

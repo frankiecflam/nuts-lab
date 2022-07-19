@@ -53,6 +53,7 @@
   display: grid;
   grid-template-columns: 10rem 1fr auto;
   align-items: center;
+  column-gap: 2rem;
 }
 
 .summaryItemImageDiv {

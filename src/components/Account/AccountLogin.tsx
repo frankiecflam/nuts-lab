@@ -12,17 +12,18 @@ import { FormEvent, useState } from "react";
 import { useInput } from "../../hooks";
 import { Button } from "../UI";
 import { useAuthContext } from "../../context/AuthContext";
-import { User } from "../../types";
-import { getUserDetails } from "../../utils/helpers/index";
+import { Order, User } from "../../types";
 
 interface AccountLoginProps {
   onFormSwitch: () => void;
   onSetUserDetails: (user: User) => void;
+  onSetUserSubmittedOrders: (orders: Order[]) => void;
 }
 
 const AccountLogin = ({
   onFormSwitch,
   onSetUserDetails,
+  onSetUserSubmittedOrders,
 }: AccountLoginProps) => {
   const [formFeedback, setFormFeedback] = useState("");
   const { login } = useAuthContext();
@@ -67,7 +68,7 @@ const AccountLogin = ({
 
     login(idToken);
 
-    // Update user details on Client side
+    // Fetch user details for client-side state update
     const userDataRes = await fetch("api/getUser", {
       method: "POST",
       headers: {
@@ -78,13 +79,29 @@ const AccountLogin = ({
       }),
     });
 
-    const { user, error } = await userDataRes.json();
-    if (error) {
-      throw new Error(error.message);
+    const { user, error: userDataError } = await userDataRes.json();
+    if (userDataError) {
+      throw new Error(userDataError.message);
     }
 
-    // update user details state on client side
+    // Fetch user submitted orders for client-side state update
+    const userSubmittedOrdersRes = await fetch("api/getSubmittedOrders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: emailInputState }),
+    });
+    const { orders, error: userOrderError } =
+      await userSubmittedOrdersRes.json();
+
+    if (userOrderError) {
+      throw new Error(userOrderError.message);
+    }
+
+    // update user details and user submittedOrders states on client side
     onSetUserDetails(user);
+    onSetUserSubmittedOrders(orders);
 
     // Reset all fields
     emailInputReset();

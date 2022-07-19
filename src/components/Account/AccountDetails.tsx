@@ -9,7 +9,7 @@ import { User, Order } from "../../types/index";
 
 interface AccountDetailsProps {
   user: User;
-  submittedOrders: Order[] | null;
+  submittedOrders: Order[];
   onSetUserDetails: (user: User) => void;
 }
 

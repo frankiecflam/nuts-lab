@@ -14,6 +14,9 @@ interface AccountContentProps {
 const AccountContent = ({ user, submittedOrders }: AccountContentProps) => {
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [userDetails, setUserDetails] = useState(user);
+  const [userSubmittedOrders, setUserSubmittedOrders] = useState<Order[]>(
+    submittedOrders ? submittedOrders : []
+  );
   const { isLoggedIn } = useAuthContext();
 
   const handleFormSwitch = () => {
@@ -22,6 +25,10 @@ const AccountContent = ({ user, submittedOrders }: AccountContentProps) => {
 
   const handleSetUserDetails = (user: User) => {
     setUserDetails(user);
+  };
+
+  const handleSetUserSubmittedOrders = (orders: Order[]) => {
+    setUserSubmittedOrders(orders);
   };
 
   return (
@@ -37,12 +44,13 @@ const AccountContent = ({ user, submittedOrders }: AccountContentProps) => {
           <AccountLogin
             onFormSwitch={handleFormSwitch}
             onSetUserDetails={handleSetUserDetails}
+            onSetUserSubmittedOrders={handleSetUserSubmittedOrders}
           />
         )}
         {isLoggedIn && userDetails && (
           <AccountDetails
             user={userDetails}
-            submittedOrders={submittedOrders}
+            submittedOrders={userSubmittedOrders}
             onSetUserDetails={handleSetUserDetails}
           />
         )}

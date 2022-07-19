@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect, useState, useRef } from "react";
 import CartContext from "./CartContext";
-import { Product, CartItem } from "../types";
+import { Product, CartItem, CartStatus } from "../types";
 
 interface CartContextProviderProps {
   children: ReactNode;
@@ -9,6 +9,7 @@ interface CartContextProviderProps {
 const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [cartStatus, setCartStatus] = useState<CartStatus>("active");
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -108,11 +109,19 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
   const handleResetCartContext = () => {
     setItems([]);
     setTotalPrice(0);
+
+    // Reset only performed upon order submission. "submitted" stays for a few secs before resetting back to "active"
+    // Don't wanna spilt it into a separate function coz ResetCartContext should reset all states.
+    setCartStatus("submitted");
+    setTimeout(() => {
+      setCartStatus("active");
+    }, 3000);
   };
 
   const CartContextAPI = {
     items,
     totalPrice,
+    status: cartStatus,
     addItem: handleAddItem,
     removeItem: handleRemoveItem,
     resetCartContext: handleResetCartContext,

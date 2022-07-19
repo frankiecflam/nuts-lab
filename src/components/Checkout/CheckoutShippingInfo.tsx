@@ -10,6 +10,7 @@ import {
 import { FormEvent, useState } from "react";
 import { User } from "../../types";
 import Link from "next/link";
+import { useCartContext } from "../../context/CartContext";
 
 interface CheckoutShippingInfoProps {
   user: User | undefined;
@@ -65,6 +66,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
   });
 
   const [formFeedback, setFormFeedback] = useState("");
+  const { resetCartContext } = useCartContext();
 
   const resetAllInputFields = () => {
     nameInputReset();
@@ -104,6 +106,7 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
     setFormFeedback("Thank you for your order!");
 
     // Reset cartContext
+    resetCartContext();
 
     // Reset all input fields upon successful submission
     resetAllInputFields();

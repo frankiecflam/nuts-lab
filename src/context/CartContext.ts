@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react";
-import { Product, CartItem } from "../types";
+import { Product, CartItem, CartStatus } from "../types";
 
 interface CartContextInterface {
   items: CartItem[];
   totalPrice: number;
+  status: CartStatus;
   addItem: (
     productItem: Product | Omit<Product, "description" | "topPick">,
     addToCartQuantity: number
@@ -15,6 +16,7 @@ interface CartContextInterface {
 const CartContext = createContext<CartContextInterface>({
   items: [],
   totalPrice: 0,
+  status: "active",
   addItem: (
     productItem: Product | Omit<Product, "description" | "topPick">,
     addToCartQuantity: number

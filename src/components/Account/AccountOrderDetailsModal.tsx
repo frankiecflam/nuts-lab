@@ -47,7 +47,7 @@ const AccountOrderDetailsModal = ({
         </div>
         <div className={styles.orderModalItemGroup}>
           <p className={styles.orderModalItemName}>Total Price:</p>
-          <p>{orderPrice}</p>
+          <p>{orderPrice} &#40;including shipping and taxes&#41;</p>
         </div>
         <ul className={styles.orderModalItemList}>
           {items.map((item) => (

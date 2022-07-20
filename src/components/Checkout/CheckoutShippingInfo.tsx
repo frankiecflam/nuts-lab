@@ -12,12 +12,15 @@ import { User, Order } from "../../types";
 import Link from "next/link";
 import { useCartContext } from "../../context/CartContext";
 import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/router";
 
 interface CheckoutShippingInfoProps {
   user: User | undefined;
 }
 
 const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
+  const router = useRouter();
+
   const {
     inputValue: nameInputState,
     inputIsValid: nameInputValid,
@@ -127,12 +130,15 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
 
     // Show form feedback to user (Return order no#)
     setFormFeedback("Thank you for your order!");
-
-    // Reset cartContext
-    resetCartContext();
-
     // Reset all input fields upon successful submission
     resetAllInputFields();
+
+    setTimeout(() => {
+      // Redirect user to account page where you can view their placed order
+      router.replace("/account");
+      // Reset cartContext after nth seconds coz it will trigger component updating on account page
+      resetCartContext();
+    }, 3000);
   };
 
   return (

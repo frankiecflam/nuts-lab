@@ -29,14 +29,15 @@ const AccountOrderDetails = ({ order }: AccountOrderDetailsProp) => {
           <Overlay onClick={handleShowOrderDetailsModalToggle} />,
           document.getElementById("overlay-root") as HTMLDivElement
         )}
-      {createPortal(
-        <AccountOrderDetailsModal
-          order={order}
-          orderDetailsModalActive={showOrderDetailsModal}
-          onCloseModal={handleShowOrderDetailsModalToggle}
-        />,
-        document.getElementById("modal-root") as HTMLDivElement
-      )}
+      {showOrderDetailsModal &&
+        createPortal(
+          <AccountOrderDetailsModal
+            order={order}
+            orderDetailsModalActive={showOrderDetailsModal}
+            onCloseModal={handleShowOrderDetailsModalToggle}
+          />,
+          document.getElementById("modal-root") as HTMLDivElement
+        )}
     </div>
   );
 };

@@ -89,7 +89,7 @@
 }
 
 .orderModalItemList {
-  margin-top: 5rem;
+  padding: 5rem 0;
   list-style: none;
   display: flex;
   flex-direction: column;

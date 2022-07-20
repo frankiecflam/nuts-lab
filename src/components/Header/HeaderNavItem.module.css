@@ -1,8 +1,31 @@
 .item {
+  position: relative;
   font-size: inherit;
   color: inherit;
+  transition: all 0.3s;
 }
 
 .item::first-letter {
   text-transform: uppercase;
+}
+
+.item::after {
+  content: "";
+  position: absolute;
+  bottom: -5%;
+  left: 0;
+  width: 0;
+  height: 0.2rem;
+  background-color: currentColor;
+  transition: all 0.3s;
+}
+
+.item.active,
+.item:hover {
+  color: var(--color-font-main);
+}
+
+.item.active::after,
+.item:hover::after {
+  width: 100%;
 }

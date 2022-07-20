@@ -29,7 +29,7 @@ const Hero = () => {
             inside out.
           </p>
           <Link href="/products">
-            <a className={styles.ctaBtn}>
+            <a>
               <Button type="button" name="discover" />
             </a>
           </Link>

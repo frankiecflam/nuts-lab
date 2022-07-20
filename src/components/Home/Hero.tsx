@@ -3,6 +3,8 @@ import styles from "./Hero.module.css";
 import Container from "../UI/Container";
 import { Hero_Bg } from "../../assets/Images/Home/index";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "../UI";
 
 const Hero = () => {
   return (
@@ -26,6 +28,11 @@ const Hero = () => {
             manufacturers, retailers and consumers so we know the business
             inside out.
           </p>
+          <Link href="/products">
+            <a className={styles.ctaBtn}>
+              <Button type="button" name="discover" />
+            </a>
+          </Link>
         </div>
       </Container>
     </Section>

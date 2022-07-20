@@ -5,6 +5,7 @@ import { authTextInput, authEmailInput } from "../../utils/helpers";
 import { FormEvent } from "react";
 import { Button } from "../UI";
 import { useState } from "react";
+import { ContactFeedback } from "../../types";
 
 const ContactForm = () => {
   const {
@@ -36,7 +37,7 @@ const ContactForm = () => {
 
   const [formValidityState, setFormValidity] = useState(false);
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     // Validate form upon submission
@@ -44,16 +45,35 @@ const ContactForm = () => {
 
     if (!formIsValid) return;
 
-    // Show successful form submission message for n seconds before disappearing
-    setFormValidity(formIsValid);
-    setTimeout(() => {
-      setFormValidity(false);
-    }, 5000);
+    // Submit contact form to the DB
+    const feedback: ContactFeedback = {
+      name: nameInputState,
+      email: emailInputState,
+      message: messageInputState,
+    };
+    const response = await fetch("api/submitContactFeedback", {
+      method: "POSt",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(feedback),
+    });
+
+    const { error, success } = await response.json();
+    if (error) {
+      throw new Error(error.message);
+    }
 
     // Reset input states upon successful submission
     nameInputReset();
     emailInputReset();
     messageInputReset();
+
+    // Show successful form submission message for n seconds before disappearing
+    setFormValidity(formIsValid);
+    setTimeout(() => {
+      setFormValidity(false);
+    }, 5000);
   };
 
   return (

@@ -2,6 +2,8 @@ import styles from "./ProductItem.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import formatPrice from "../../utils/helpers/formatPrice";
+import { useState } from "react";
+import { LoadingSpinner } from "../UI";
 
 interface ProductItemProps {
   className?: string;
@@ -20,11 +22,15 @@ const ProductItem = ({
 }: ProductItemProps) => {
   const classes = className ? `${styles.item} ${className}` : styles.item;
 
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <li className={classes}>
       <Link href={href}>
         <a>
+          {isLoading && <LoadingSpinner />}
           <Image
+            onLoad={() => setIsLoading(false)}
             src={src}
             width="256"
             height="384"

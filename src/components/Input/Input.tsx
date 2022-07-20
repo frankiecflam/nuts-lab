@@ -7,6 +7,7 @@ interface InputProps {
   type: string;
   required?: boolean;
   value?: string | undefined;
+  autoComplete?: "on" | "off";
   minLength?: number;
   disabled?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -19,6 +20,7 @@ const Input = ({
   id,
   type,
   required,
+  autoComplete,
   value,
   disabled,
   minLength,
@@ -33,6 +35,7 @@ const Input = ({
       type={type}
       value={value}
       minLength={minLength}
+      autoComplete={autoComplete ? autoComplete : "off"}
       disabled={disabled}
       required={required}
       onChange={onChange}

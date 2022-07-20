@@ -152,6 +152,7 @@ const AccountSignup = ({
             <AccountInput
               id="password"
               type="password"
+              autoComplete="on"
               required
               minLength={6}
               value={passwordInputState}

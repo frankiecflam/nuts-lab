@@ -8,6 +8,7 @@ interface AccountInputProps {
   required?: boolean;
   value?: string | undefined;
   minLength?: number;
+  autoComplete?: "on" | "off";
   onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
@@ -18,6 +19,7 @@ const AccountInput = ({
   type,
   required,
   value,
+  autoComplete,
   minLength,
   onChange,
   onFocus,
@@ -29,6 +31,7 @@ const AccountInput = ({
       type={type}
       id={id}
       minLength={minLength}
+      autoComplete={autoComplete ? autoComplete : "off"}
       required={required}
       value={value}
       onChange={onChange}

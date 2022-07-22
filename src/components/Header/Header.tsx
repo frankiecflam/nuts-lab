@@ -7,16 +7,22 @@ import {
 } from "./index";
 
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const [mobileActive, setMobileActive] = useState(false);
+  const { pathname } = useRouter();
 
   const handleMobileActiveToggle = () => {
     setMobileActive((prevState) => !prevState);
   };
 
   return (
-    <header className={styles.header}>
+    <header
+      className={
+        pathname !== "/" ? `${styles.header} ${styles.bgWhite}` : styles.header
+      }
+    >
       <nav className={styles.nav}>
         <HeaderNavBrand
           mobileActive={mobileActive}

@@ -13,13 +13,17 @@ const Footer = () => {
             <li className={styles.contactItem}>
               <p className={styles.contactItemTitle}>email:</p>
               <p className={styles.contactItemContent}>
-                <Link href="mailto:hello@nutslab.com">hello@nutslab.com</Link>
+                <Link href="mailto:hello@nutslab.com">
+                  <a className={styles.contactItemLink}>hello@nutslab.com</a>
+                </Link>
               </p>
             </li>
             <li className={styles.contactItem}>
               <p className={styles.contactItemTitle}>phone:</p>
               <p className={styles.contactItemContent}>
-                <Link href="tel:07323137160">+44 0732 313 7160</Link>
+                <Link href="tel:07323137160">
+                  <a className={styles.contactItemLink}>+44 0732 313 7160</a>
+                </Link>
               </p>
             </li>
             <li className={styles.contactItem}>

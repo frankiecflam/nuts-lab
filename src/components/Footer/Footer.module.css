@@ -38,6 +38,25 @@
   text-transform: capitalize;
 }
 
+.contactItemLink {
+  position: relative;
+}
+
+.contactItemLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.15rem;
+  background-color: currentColor;
+  transition: all 0.3s;
+}
+
+.contactItemLink:hover::after {
+  width: 100%;
+}
+
 .social {
   display: flex;
   align-items: center;
@@ -49,6 +68,14 @@
   display: flex;
   column-gap: 2rem;
   font-size: var(--font-size-1);
+}
+
+.socialItem {
+  transition: all 0.3s;
+}
+
+.socialItem:hover {
+  transform: translateY(-0.5rem);
 }
 
 @media only screen and (min-width: 36em) {

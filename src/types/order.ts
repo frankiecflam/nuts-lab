@@ -1,4 +1,4 @@
-import { Product, CartItem } from "./index";
+import { CartItem } from "./index";
 
 export default interface Order {
   id: string;

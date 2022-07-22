@@ -5,6 +5,8 @@ import { Believe, Secrets } from "../../assets/Images/Home/index";
 import Image from "next/image";
 
 const Features = () => {
+  
+
   return (
     <Section>
       <Container>

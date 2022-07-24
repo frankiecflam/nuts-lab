@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { databaseURL } from "../../firebaseClient";
-import { Order } from "../../types/index";
+import { Order, ApiURL } from "../../types/index";
 
 type Data = {
   error?: {};
@@ -15,7 +15,9 @@ export default async function handler(
 ) {
   const { order }: { order: Order } = req.body;
 
-  const response = await fetch(`${databaseURL}/orders.json`, {
+  const path: ApiURL =
+    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/orders.json";
+  const response = await fetch(path, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

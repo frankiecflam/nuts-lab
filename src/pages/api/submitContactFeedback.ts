@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { databaseURL } from "../../firebaseClient";
-import { ContactFeedback } from "../../types";
+import { ContactFeedback, ApiURL } from "../../types";
 
 type Data = {
   error?: { message: string };
@@ -13,7 +12,9 @@ export default async function handler(
 ) {
   const { name, email, message }: ContactFeedback = req.body;
 
-  const response = await fetch(`${databaseURL}/feedbacks.json`, {
+  const path: ApiURL =
+    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/feedbacks.json";
+  const response = await fetch(path, {
     method: "POSt",
     headers: {
       "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { databaseURL } from "../../firebaseClient";
+import { ApiURL } from "../../types/index";
 
 type Data = {
   error?: {};
@@ -10,7 +10,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const response = await fetch(`${databaseURL}/products.json`);
+  const path: ApiURL =
+    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  const response = await fetch(path);
 
   if (!response.ok) {
     res

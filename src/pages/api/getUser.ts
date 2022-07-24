@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User } from "../../types/index";
+import { User, ApiURL } from "../../types/index";
 
 type Data = {
   error?: {
@@ -14,9 +14,9 @@ export default async function handler(
 ) {
   const { localId: userId } = req.body;
 
-  const response = await fetch(
-    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/users.json"
-  );
+  const path: ApiURL =
+    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+  const response = await fetch(path);
 
   if (!response.ok) {
     res

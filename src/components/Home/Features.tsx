@@ -2,7 +2,7 @@ import styles from "./Features.module.css";
 import Container from "../UI/Container";
 import { Section, SectionHeader, SectionBody } from "../Section/index";
 import { Believe, Secrets } from "../../assets/Images/Home/index";
-import Image from "next/image";
+import { FeaturesItem } from "./index";
 
 const Features = () => {
   return (
@@ -10,12 +10,7 @@ const Features = () => {
       <Container>
         <SectionHeader title="features" />
         <SectionBody className={styles.features}>
-          <Image
-            src={Secrets}
-            alt="picture of farmer planting seeds"
-            className={styles.featureImage}
-          />
-          <div className={styles.featureItem}>
+          <FeaturesItem src={Secrets} alt="picture of farmer planting seeds">
             <h1 className={styles.featureItemHeading}>Our secrets to nuts</h1>
             <p className={styles.featureItemDescription}>
               We source our nuts directly from local farmers with strong
@@ -24,13 +19,12 @@ const Features = () => {
               process, making sure that only high-quality nuts are sold to
               customers.
             </p>
-          </div>
-          <Image
+          </FeaturesItem>
+
+          <FeaturesItem
             src={Believe}
-            className={styles.featureImage}
-            alt="picture of us working in a local farm"
-          />
-          <div className={styles.featureItem}>
+            alt="picture of us walking around the farm of our local suppliers"
+          >
             <h1 className={styles.featureItemHeading}>What we believe</h1>
             <p className={styles.featureItemDescription}>
               We make products we can be proud of. We pour heart and soul into
@@ -38,7 +32,7 @@ const Features = () => {
               highest quality. We make products which our customers love and
               enjoy, keeping them coming back for more.
             </p>
-          </div>
+          </FeaturesItem>
         </SectionBody>
       </Container>
     </Section>

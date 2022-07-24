@@ -4,18 +4,6 @@
   row-gap: 3rem;
 }
 
-.featureItem {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 5rem;
-  padding: 3rem;
-}
-
-.featureImage {
-  object-fit: cover;
-}
-
 .featureItemHeading {
   text-align: center;
   font-size: var(--font-size-5);

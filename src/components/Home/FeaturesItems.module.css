@@ -1,0 +1,15 @@
+.featuresImageDiv {
+  position: relative;
+}
+
+.featureImage {
+  object-fit: cover;
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 5rem;
+  padding: 3rem;
+}

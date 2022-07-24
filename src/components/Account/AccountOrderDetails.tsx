@@ -33,7 +33,6 @@ const AccountOrderDetails = ({ order }: AccountOrderDetailsProp) => {
         createPortal(
           <AccountOrderDetailsModal
             order={order}
-            orderDetailsModalActive={showOrderDetailsModal}
             onCloseModal={handleShowOrderDetailsModalToggle}
           />,
           document.getElementById("modal-root") as HTMLDivElement

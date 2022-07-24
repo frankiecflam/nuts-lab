@@ -11,11 +11,6 @@
   flex-direction: column;
 
   transition: all 0.4s ease-out;
-  clip-path: inset(0 0 0 100%);
-}
-
-.active.accountOrderDetailsModal {
-  clip-path: inset(0 0 0 0);
 }
 
 .orderModalHeader {

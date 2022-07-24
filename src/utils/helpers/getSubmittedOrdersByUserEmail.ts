@@ -1,8 +1,9 @@
-import { databaseURL } from "../../firebaseClient";
-import { Order } from "../../types";
+import { Order, ApiURL } from "../../types";
 
 export default async function getSubmittedOrdersByUserId(userEmail: string) {
-  const response = await fetch(`${databaseURL}/orders.json`);
+  const path: ApiURL =
+    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/orders.json";
+  const response = await fetch(path);
 
   if (!response.ok) {
     throw new Error(

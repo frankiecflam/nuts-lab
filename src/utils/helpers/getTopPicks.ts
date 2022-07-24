@@ -1,7 +1,9 @@
-import { databaseURL } from "../../firebaseClient";
+import { ApiURL } from "../../types";
 
 export default async function getTopPicks() {
-  const response = await fetch(`${databaseURL}/products.json`);
+  const path: ApiURL =
+    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  const response = await fetch(path);
 
   if (!response.ok) {
     throw new Error("Something went wrong!");

@@ -1,8 +1,9 @@
-import { databaseURL } from "../../firebaseClient";
-import { Product } from "../../types/index";
+import { Product, ApiURL } from "../../types/index";
 
 export default async function getProducts() {
-  const response = await fetch(`${databaseURL}/products.json`);
+  const path: ApiURL =
+    "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  const response = await fetch(path);
 
   if (!response.ok) {
     throw new Error(

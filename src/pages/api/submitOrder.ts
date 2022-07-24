@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { databaseURL } from "../../firebaseClient";
 import { Order, ApiURL } from "../../types/index";
 
 type Data = {

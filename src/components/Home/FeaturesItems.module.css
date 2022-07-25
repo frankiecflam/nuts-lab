@@ -1,5 +1,6 @@
 .featuresImageDiv {
   position: relative;
+  min-height: 40rem;
 }
 
 .featureImage {

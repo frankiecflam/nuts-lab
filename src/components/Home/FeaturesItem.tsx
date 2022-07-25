@@ -20,6 +20,7 @@ const FeaturesItem = ({ src, alt, children }: FeaturesItemProp) => {
           src={src}
           alt={alt}
           className={styles.featureImage}
+          layout="fill"
           onLoad={() => setImageIsLoading(false)}
         />
       </div>

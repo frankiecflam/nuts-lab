@@ -139,8 +139,9 @@ export default function formatPrice(price: number) {
 
 ## Continual Improvement
 
-- Type checker for data fetched from Database, with the use of tRPC library
+- Type checker for data fetched from Database, with an external libaries like tRPC
 - Browser Compatability
+- Unit Testing with Jest
 
 ## Author
 

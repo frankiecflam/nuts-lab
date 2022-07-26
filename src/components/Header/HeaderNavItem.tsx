@@ -10,7 +10,7 @@ interface HeaderNavItemProps {
 const HeaderNavItem = ({ href, name }: HeaderNavItemProps) => {
   const { pathname: currentPathName } = useRouter();
   const isPathActive =
-    currentPathName === "/" ? name === "home" : currentPathName === `/${name}`;
+    currentPathName === "/" ? name === "home" : currentPathName.includes(name);
 
   return (
     <li

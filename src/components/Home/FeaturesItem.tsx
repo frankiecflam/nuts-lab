@@ -1,4 +1,4 @@
-import styles from "./FeaturesItems.module.css";
+import styles from "./FeaturesItem.module.css";
 import Image, { StaticImageData } from "next/image";
 import { LoadingSpinner } from "../UI";
 import { useState } from "react";

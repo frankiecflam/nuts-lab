@@ -7,7 +7,7 @@ import {
   Testimonials,
   InstagramFeed,
 } from "../components/Home/index";
-import { getTopPicks, getProducts } from "../utils/helpers/index";
+import { getTopPicks } from "../utils/helpers/index";
 import { Product } from "../types/index";
 
 interface HomePageProps {

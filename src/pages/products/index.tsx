@@ -1,15 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { ProductsContent } from "../../components/Products";
-import { GetStaticProps } from "next";
-import { getProducts } from "../../utils/helpers/index";
 import { Product } from "../../types/index";
 
 interface ProductsPageProps {
   products: Product[];
 }
 
-const Products: NextPage<ProductsPageProps> = ({ products }) => {
+const Products: NextPage<ProductsPageProps> = () => {
   return (
     <div>
       <Head>
@@ -19,19 +17,19 @@ const Products: NextPage<ProductsPageProps> = ({ products }) => {
           content="Nuts Lab is a UK-based nuts retailer wih strong emphasis on naturality, deliciousness and food safety. We have been in business since 1982, and striving to deliver the best nuts. "
         />
       </Head>
-      <ProductsContent products={products} />
+      <ProductsContent />
     </div>
   );
 };
 
 export default Products;
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const products = await getProducts();
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const products = await getProducts();
 
-  return {
-    props: {
-      products,
-    },
-  };
-};
+//   return {
+//     props: {
+//       products,
+//     },
+//   };
+// };

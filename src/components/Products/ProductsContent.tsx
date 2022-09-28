@@ -4,17 +4,13 @@ import Container from "../UI/Container";
 import { ProductList } from "./index";
 import { Product } from "../../types/index";
 
-interface ProductsContentProps {
-  products: Product[];
-}
-
-const ProductsContent = ({ products }: ProductsContentProps) => {
+const ProductsContent = () => {
   return (
     <Section className={styles.products}>
       <Container>
         <SectionHeader title="products" />
         <SectionBody>
-          <ProductList products={products} />
+          <ProductList />
         </SectionBody>
       </Container>
     </Section>

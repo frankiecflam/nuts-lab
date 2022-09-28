@@ -1,5 +1,5 @@
 import Head from "next/head";
-import type { NextPage, GetStaticProps } from "next";
+import type { NextPage } from "next";
 import {
   Hero,
   TopPicks,
@@ -7,14 +7,8 @@ import {
   Testimonials,
   InstagramFeed,
 } from "../components/Home/index";
-import { getTopPicks } from "../utils/helpers/index";
-import { Product } from "../types/index";
 
-interface HomePageProps {
-  topPicks: Product[];
-}
-
-const Home: NextPage<HomePageProps> = ({ topPicks }) => {
+const Home: NextPage = () => {
   return (
     <div>
       <Head>
@@ -25,22 +19,12 @@ const Home: NextPage<HomePageProps> = ({ topPicks }) => {
         />
       </Head>
       <Hero />
-      <TopPicks topPicks={topPicks} />
+      <TopPicks />
       <Features />
       <Testimonials />
       <InstagramFeed />
     </div>
   );
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const topPicks = await getTopPicks();
-
-  return {
-    props: {
-      topPicks,
-    },
-  };
 };
 
 export default Home;

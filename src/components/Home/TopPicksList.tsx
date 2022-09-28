@@ -1,12 +1,23 @@
 import styles from "./TopPicksList.module.css";
-import { Product } from "../../types/index";
 import { ProductItem } from "../Products/index";
+import { useProducts } from "../../hooks";
+import { LoadingSpinner } from "../UI";
+import { getTopPicks } from "../../utils/helpers";
 
-interface TopPicksListProps {
-  topPicks: Product[];
-}
+const TopPicksList = () => {
+  const { isLoading, error, data: products } = useProducts();
 
-const TopPicksList = ({ topPicks }: TopPicksListProps) => {
+  if (isLoading) return <LoadingSpinner />;
+
+  if (error || !products)
+    return (
+      <div>
+        Something went wrong fetching top-pick products from the database!
+      </div>
+    );
+
+  const topPicks = getTopPicks(products);
+
   return (
     <ul className={styles.list}>
       {topPicks.map((topPick) => (

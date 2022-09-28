@@ -6,17 +6,13 @@ import { TopPicksList } from "./index";
 import Link from "next/link";
 import { Button } from "../UI";
 
-interface TopPicksProps {
-  topPicks: Product[];
-}
-
-const TopPicks = ({ topPicks }: TopPicksProps) => {
+const TopPicks = () => {
   return (
     <Section>
       <Container>
         <SectionHeader title="top picks" />
         <SectionBody className={styles.topPicks}>
-          <TopPicksList topPicks={topPicks} />
+          <TopPicksList />
           <Link href="/products">
             <a>
               <Button type="button" name="view all products" />

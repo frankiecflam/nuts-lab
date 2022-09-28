@@ -4,12 +4,14 @@ import { formatPrice } from "../../utils/helpers/index";
 import { Button } from "../UI";
 import { useCartContext } from "../../context/CartContext";
 import { CartItem } from "../../types";
+import Link from "next/link";
 
 interface CartModalItemProps {
   item: CartItem;
+  onCloseModal: () => void;
 }
 
-const CartModalItem = ({ item }: CartModalItemProps) => {
+const CartModalItem = ({ item, onCloseModal }: CartModalItemProps) => {
   const { id, title, price, image } = item;
 
   const { quantity: currentItemQty } = useCartContext().items.filter(
@@ -33,13 +35,18 @@ const CartModalItem = ({ item }: CartModalItemProps) => {
 
   return (
     <li className={styles.cartModalItem}>
-      <div className={styles.cartModalItemImageDiv}>
-        <Image
-          src={image}
-          alt={title}
-          layout="fill"
-          className={styles.cartModalItemImage}
-        />
+      <div>
+        <Link href={`/products/${id}`}>
+          <a className={styles.cartModalImageLink}>
+            <Image
+              src={image}
+              alt={title}
+              layout="fill"
+              className={styles.cartModalItemImage}
+              onClick={onCloseModal}
+            />
+          </a>
+        </Link>
       </div>
       <div className={styles.cartModalItemText}>
         <div className={styles.cartModalItemTextHeader}>

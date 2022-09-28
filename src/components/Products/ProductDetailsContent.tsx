@@ -38,6 +38,7 @@ const ProductDetailsContent = ({ product }: ProductDetailsContentProps) => {
                   src={product.image}
                   layout="fill"
                   alt={product.title}
+                  priority
                 />
               </div>
               <div className={styles.productTextContent}>

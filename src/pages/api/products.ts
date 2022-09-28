@@ -15,7 +15,7 @@ export default async function handler(
   const response = await fetch(path);
 
   if (!response.ok) {
-    res
+    return res
       .status(400)
       .json({ error: "Something went wrong fetching API from the database" });
   }

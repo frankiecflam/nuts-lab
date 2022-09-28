@@ -4,9 +4,10 @@
   column-gap: 3rem;
 }
 
-.cartModalItemImageDiv {
-  min-height: 15rem;
+.cartModalImageLink {
   position: relative;
+  display: block;
+  min-height: 15rem;
 }
 
 .cartModalItemImage {

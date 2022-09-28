@@ -2,7 +2,11 @@ import styles from "./CartModalBody.module.css";
 import { useCartContext } from "../../context/CartContext";
 import { CartModalItem } from "./index";
 
-const CartModalBody = () => {
+interface CartModalBodyProps {
+  onCloseModal: () => void;
+}
+
+const CartModalBody = ({ onCloseModal }: CartModalBodyProps) => {
   const { items } = useCartContext();
 
   return (
@@ -13,7 +17,11 @@ const CartModalBody = () => {
       {items.length > 0 && (
         <ul className={styles.cartList}>
           {items.map((item) => (
-            <CartModalItem item={item} key={item.id} />
+            <CartModalItem
+              item={item}
+              key={item.id}
+              onCloseModal={onCloseModal}
+            />
           ))}
         </ul>
       )}

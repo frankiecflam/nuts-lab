@@ -1,8 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import {
-  getProducts,
-  getRecommendedProducts,
-} from "../../../utils/helpers/index";
+import { getProducts } from "../../../utils/helpers/index";
 import { Product } from "../../../types/index";
 import type { NextPage } from "next";
 import Head from "next/head";

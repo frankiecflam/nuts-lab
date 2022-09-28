@@ -134,8 +134,8 @@ const CheckoutShippingInfo = ({ user }: CheckoutShippingInfoProps) => {
     resetAllInputFields();
 
     setTimeout(() => {
-      // Redirect user to account page where you can view their placed order
-      router.replace("/account");
+      // Redirect user to account page where you can view their placed order or home page if not logged in
+      user ? router.replace("/account") : router.replace("/");
       // Reset cartContext after nth seconds coz it will trigger component updating on account page
       resetCartContext();
     }, 3000);

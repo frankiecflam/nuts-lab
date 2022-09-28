@@ -1,16 +1,32 @@
-import styles from "./ProductDetailsRecommendations..module.css";
 import { Section, SectionBody, SectionHeader } from "../Section/index";
-import { Container } from "../UI";
+import { Container, LoadingSpinner } from "../UI";
 import { ProductList } from "./index";
 import { Product } from "../../types/index";
-
-interface ProductDetailsRecommendationsProps {
-  recommendedProducts: Product[];
-}
+import { useProducts } from "../../hooks";
+import { getRecommendedProducts } from "../../utils/helpers";
 
 const ProductDetailsRecommendations = ({
-  recommendedProducts,
-}: ProductDetailsRecommendationsProps) => {
+  currentProductId,
+}: {
+  currentProductId: string;
+}) => {
+  const { isLoading, error, data: products } = useProducts();
+
+  if (isLoading) return <LoadingSpinner />;
+
+  if (error || !products)
+    return (
+      <div>
+        Something went wrong fetching recommended products from the database!
+      </div>
+    );
+
+  const recommendedProducts: Product[] = getRecommendedProducts(
+    currentProductId,
+    products,
+    4
+  );
+
   return (
     <Section>
       <Container>

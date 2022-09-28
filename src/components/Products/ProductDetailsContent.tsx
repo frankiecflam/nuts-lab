@@ -11,13 +11,9 @@ import { ProductDetailsRecommendations } from "./index";
 
 interface ProductDetailsContentProps {
   product: Product;
-  recommendedProducts: Product[];
 }
 
-const ProductDetailsContent = ({
-  product,
-  recommendedProducts,
-}: ProductDetailsContentProps) => {
+const ProductDetailsContent = ({ product }: ProductDetailsContentProps) => {
   const [addToCartQty, setAddAddToCartQty] = useState(1);
   const { addItem } = useCartContext();
 
@@ -90,9 +86,7 @@ const ProductDetailsContent = ({
           </SectionBody>
         </Container>
       </Section>
-      <ProductDetailsRecommendations
-        recommendedProducts={recommendedProducts}
-      />
+      <ProductDetailsRecommendations currentProductId={product.id} />
     </>
   );
 };

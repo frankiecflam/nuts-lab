@@ -10,13 +10,9 @@ import { ProductDetailsContent } from "../../../components/Products/index";
 
 interface ProductDetailsPageProps {
   product: Product;
-  recommendedProducts: Product[];
 }
 
-const ProductDetails: NextPage<ProductDetailsPageProps> = ({
-  product,
-  recommendedProducts,
-}) => {
+const ProductDetails: NextPage<ProductDetailsPageProps> = ({ product }) => {
   const title = `Nuts Lab — ${product.title}`;
 
   return (
@@ -25,10 +21,7 @@ const ProductDetails: NextPage<ProductDetailsPageProps> = ({
         <title>{title}</title>
         <meta name="description" content={product.description} />
       </Head>
-      <ProductDetailsContent
-        product={product}
-        recommendedProducts={recommendedProducts}
-      />
+      <ProductDetailsContent product={product} />
     </div>
   );
 };
@@ -40,12 +33,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const productId = context.params?.id as string;
   const [product] = products.filter((product) => product.id === productId);
 
-  const recommendedProducts = getRecommendedProducts(productId, products, 4);
-
   return {
     props: {
       product,
-      recommendedProducts,
     },
   };
 };

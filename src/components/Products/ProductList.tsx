@@ -2,15 +2,13 @@ import styles from "./ProductList.module.css";
 import { ProductItem } from "./index";
 import { useProducts } from "../../hooks";
 import { LoadingSpinner } from "../UI";
+import { Product } from "../../types";
 
-const ProductList = () => {
-  const { data: products, isLoading, error } = useProducts();
+interface ProductListProps {
+  products: Product[];
+}
 
-  if (isLoading) return <LoadingSpinner />;
-
-  if (error || !products)
-    return <div>Something went wrong fetching products from the database!</div>;
-
+const ProductList = ({ products }: ProductListProps) => {
   return (
     <ul className={styles.productList}>
       {products.map((product) => (

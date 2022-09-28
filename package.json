@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.7.1",
+    "@tanstack/react-query-devtools": "^4.7.1",
     "@types/cookie": "^0.5.1",
     "@types/uuid": "^8.3.4",
     "axios": "^0.27.2",

@@ -2,11 +2,12 @@ import styles from "./TopPicksList.module.css";
 import { ProductItem } from "../Products/index";
 import { useProducts } from "../../hooks";
 import { getTopPicks } from "../../utils/helpers";
+import { LoadingSpinner } from "../UI";
 
 const TopPicksList = () => {
   const { isLoading, error, data: products } = useProducts();
 
-  if (isLoading) return null;
+  if (isLoading) return <LoadingSpinner />;
 
   if (error || !products)
     return (

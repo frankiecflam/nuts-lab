@@ -19,7 +19,14 @@ const TestimonialsItem = ({
   currentSlidingPosition,
   rating,
 }: TestimonialsItemProps) => {
-  const ratingIcons = new Array(rating).fill(<StarIcon />);
+  const ratingIcons = [];
+  for (let i = 0; i < rating; i++) {
+    ratingIcons.push(
+      <li key={i}>
+        <StarIcon />
+      </li>
+    );
+  }
 
   return (
     <li
@@ -35,11 +42,7 @@ const TestimonialsItem = ({
           className={styles.customerPicture}
           alt={`picture of customer — ${name}`}
         />
-        <ul className={styles.customerRating}>
-          {ratingIcons.map((Icon, index) => (
-            <Icon key={index} />
-          ))}
-        </ul>
+        <ul className={styles.customerRating}>{ratingIcons}</ul>
         <p className={styles.customerName}>{name}</p>
       </div>
       <div className={styles.reviewBody}>

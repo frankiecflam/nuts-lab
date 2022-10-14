@@ -23,11 +23,12 @@
 }
 
 .customerRating {
+  list-style: none;
   display: flex;
   column-gap: 0.5rem;
 }
 
-.customerRating > svg {
+.customerRating svg {
   font-size: var(--font-size-1);
   fill: var(--color-rating-star);
 }

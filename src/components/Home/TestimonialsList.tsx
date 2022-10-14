@@ -80,6 +80,7 @@ const TestimonialsList = () => {
       {/* Customer Review */}
       <TestimonialsItem
         position={0}
+        rating={5}
         currentSlidingPosition={currentSlidingPosition}
         image={Customer_1}
         name="michael anderson"
@@ -87,6 +88,7 @@ const TestimonialsList = () => {
       />
       <TestimonialsItem
         position={1}
+        rating={5}
         currentSlidingPosition={currentSlidingPosition}
         image={Customer_2}
         name="Chelsea Olivia"
@@ -94,6 +96,7 @@ const TestimonialsList = () => {
       />
       <TestimonialsItem
         position={2}
+        rating={5}
         currentSlidingPosition={currentSlidingPosition}
         image={Customer_3}
         name="Katie Simmons"

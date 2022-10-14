@@ -8,6 +8,7 @@ interface TestimonialsItemProps {
   content: string;
   position: number;
   currentSlidingPosition: number;
+  rating: 1 | 2 | 3 | 4 | 5;
 }
 
 const TestimonialsItem = ({
@@ -16,7 +17,10 @@ const TestimonialsItem = ({
   content,
   position,
   currentSlidingPosition,
+  rating,
 }: TestimonialsItemProps) => {
+  const ratingIcons = new Array(rating).fill(<StarIcon />);
+
   return (
     <li
       className={`${styles.review}`}
@@ -31,13 +35,11 @@ const TestimonialsItem = ({
           className={styles.customerPicture}
           alt={`picture of customer — ${name}`}
         />
-        <div className={styles.customerRating}>
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-        </div>
+        <ul className={styles.customerRating}>
+          {ratingIcons.map((Icon, index) => (
+            <Icon key={index} />
+          ))}
+        </ul>
         <p className={styles.customerName}>{name}</p>
       </div>
       <div className={styles.reviewBody}>

@@ -8,17 +8,20 @@ import { LoadingSpinner } from "../UI";
 const ProductsContent = () => {
   const { data: products, isLoading, error } = useProducts();
 
-  if (isLoading) return <LoadingSpinner />;
-
-  if (error || !products)
+  if (error || (!products && !isLoading)) {
     return <div>Something went wrong fetching products from the database!</div>;
+  }
 
   return (
     <Section className={styles.products}>
       <Container>
         <SectionHeader title="products" />
         <SectionBody>
-          <ProductList products={products} />
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <ProductList products={products!} />
+          )}
         </SectionBody>
       </Container>
     </Section>

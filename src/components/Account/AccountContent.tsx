@@ -1,6 +1,6 @@
 import styles from "./AccountContent.module.css";
 import { Section } from "../Section";
-import { Container } from "../UI/index";
+import { Container, LoadingSpinner } from "../UI/index";
 import { AccountSignup, AccountLogin, AccountDetails } from "./index";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
@@ -42,9 +42,7 @@ const AccountContent = ({ user, submittedOrders }: AccountContentProps) => {
               onSetUserDetails={handleSetUserDetails}
             />
           ) : (
-            <p>
-              Something went wrong getting the user details from the database!
-            </p>
+            <LoadingSpinner />
           )
         ) : showSignupForm ? (
           <AccountSignup

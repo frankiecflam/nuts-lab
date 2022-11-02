@@ -1,6 +1,6 @@
 import styles from "./AccountContent.module.css";
 import { Section } from "../Section";
-import { Container } from "../UI/index";
+import { Container, LoadingSpinner } from "../UI/index";
 import { AccountSignup, AccountLogin, AccountDetails } from "./index";
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
@@ -34,24 +34,26 @@ const AccountContent = ({ user, submittedOrders }: AccountContentProps) => {
   return (
     <Section className={styles.account}>
       <Container>
-        {!isLoggedIn && showSignupForm && (
+        {isLoggedIn ? (
+          userDetails ? (
+            <AccountDetails
+              user={userDetails}
+              submittedOrders={userSubmittedOrders}
+              onSetUserDetails={handleSetUserDetails}
+            />
+          ) : (
+            <LoadingSpinner />
+          )
+        ) : showSignupForm ? (
           <AccountSignup
             onFormSwitch={handleFormSwitch}
             onSetUserDetails={setUserDetails}
           />
-        )}
-        {!isLoggedIn && !showSignupForm && (
+        ) : (
           <AccountLogin
             onFormSwitch={handleFormSwitch}
             onSetUserDetails={handleSetUserDetails}
             onSetUserSubmittedOrders={handleSetUserSubmittedOrders}
-          />
-        )}
-        {isLoggedIn && userDetails && (
-          <AccountDetails
-            user={userDetails}
-            submittedOrders={userSubmittedOrders}
-            onSetUserDetails={handleSetUserDetails}
           />
         )}
       </Container>

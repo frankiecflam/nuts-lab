@@ -34,24 +34,28 @@ const AccountContent = ({ user, submittedOrders }: AccountContentProps) => {
   return (
     <Section className={styles.account}>
       <Container>
-        {!isLoggedIn && showSignupForm && (
+        {isLoggedIn ? (
+          userDetails ? (
+            <AccountDetails
+              user={userDetails}
+              submittedOrders={userSubmittedOrders}
+              onSetUserDetails={handleSetUserDetails}
+            />
+          ) : (
+            <p>
+              Something went wrong getting the user details from the database!
+            </p>
+          )
+        ) : showSignupForm ? (
           <AccountSignup
             onFormSwitch={handleFormSwitch}
             onSetUserDetails={setUserDetails}
           />
-        )}
-        {!isLoggedIn && !showSignupForm && (
+        ) : (
           <AccountLogin
             onFormSwitch={handleFormSwitch}
             onSetUserDetails={handleSetUserDetails}
             onSetUserSubmittedOrders={handleSetUserSubmittedOrders}
-          />
-        )}
-        {isLoggedIn && userDetails && (
-          <AccountDetails
-            user={userDetails}
-            submittedOrders={userSubmittedOrders}
-            onSetUserDetails={handleSetUserDetails}
           />
         )}
       </Container>

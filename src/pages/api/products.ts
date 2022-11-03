@@ -3,7 +3,7 @@ import { ApiURL } from "../../types/index";
 
 type Data = {
   error?: {};
-  data?: {};
+  products?: {};
 };
 
 export default async function handler(
@@ -20,6 +20,6 @@ export default async function handler(
       .json({ error: "Something went wrong fetching API from the database" });
   }
 
-  const data = await response.json();
-  res.status(200).json({ data });
+  const products = await response.json();
+  res.status(200).json({ products });
 }

@@ -7,7 +7,15 @@ import { Button } from "../UI";
 import { useState } from "react";
 import { ContactFeedback } from "../../types";
 
-const ContactForm = () => {
+interface ContactFormProps {
+  onContactFormSubmit: (feedback: {
+    name: string;
+    email: string;
+    message: string;
+  }) => Promise<{ success: boolean }>;
+}
+
+const ContactForm = ({ onContactFormSubmit }: ContactFormProps) => {
   const {
     inputValue: nameInputState,
     inputIsValid: nameInputValid,
@@ -51,18 +59,8 @@ const ContactForm = () => {
       email: emailInputState,
       message: messageInputState,
     };
-    const response = await fetch("api/submitContactFeedback", {
-      method: "POSt",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(feedback),
-    });
 
-    const { error, success } = await response.json();
-    if (error) {
-      throw new Error(error.message);
-    }
+    await onContactFormSubmit(feedback);
 
     // Reset input states upon successful submission
     nameInputReset();
@@ -77,7 +75,11 @@ const ContactForm = () => {
   };
 
   return (
-    <form className={styles.contactForm} onSubmit={handleFormSubmit}>
+    <form
+      className={styles.contactForm}
+      onSubmit={handleFormSubmit}
+      aria-label="contactForm"
+    >
       <div className={styles.contactFormBody}>
         <div className={styles.formGroup}>
           <ContactInputLabel htmlFor="name" name="name" />

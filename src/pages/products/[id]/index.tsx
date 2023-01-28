@@ -3,7 +3,11 @@ import { getProducts } from "../../../utils/helpers/index";
 import { Product } from "../../../types/index";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { ProductDetailsContent } from "../../../components/Products/index";
+import {
+  ProductDetailsContent,
+  ProductDetailsRecommendations,
+} from "../../../components/Products/index";
+import { useCartContext } from "../../../context/CartContext";
 
 interface ProductDetailsPageProps {
   product: Product;
@@ -11,6 +15,17 @@ interface ProductDetailsPageProps {
 
 const ProductDetails: NextPage<ProductDetailsPageProps> = ({ product }) => {
   const title = `Nuts Lab — ${product.title}`;
+  const { addItem } = useCartContext();
+
+  const handleAddItemToCart = ({
+    product,
+    addToCartQty,
+  }: {
+    product: Product;
+    addToCartQty: number;
+  }) => {
+    addItem(product, addToCartQty);
+  };
 
   return (
     <div>
@@ -18,7 +33,13 @@ const ProductDetails: NextPage<ProductDetailsPageProps> = ({ product }) => {
         <title>{title}</title>
         <meta name="description" content={product.description} />
       </Head>
-      <ProductDetailsContent product={product} />
+      <>
+        <ProductDetailsContent
+          product={product}
+          handleAddItemToCart={handleAddItemToCart}
+        />
+        <ProductDetailsRecommendations currentProductId={product.id} />
+      </>
     </div>
   );
 };

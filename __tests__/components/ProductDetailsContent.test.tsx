@@ -1,15 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { ProductDetailsContent } from "../../src/components/Products";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ReactNode } from "react";
 import userEvent from "@testing-library/user-event";
 
 const handleAddItemToCart = jest.fn();
 
 const renderComponent = () => {
-  const client = new QueryClient();
-
   const product = {
     id: "1",
     title: "Almonds 425g",
@@ -24,12 +20,7 @@ const renderComponent = () => {
     <ProductDetailsContent
       product={product}
       handleAddItemToCart={handleAddItemToCart}
-    />,
-    {
-      wrapper: ({ children }: { children: ReactNode }) => (
-        <QueryClientProvider client={client}>{children}</QueryClientProvider>
-      ),
-    }
+    />
   );
 };
 

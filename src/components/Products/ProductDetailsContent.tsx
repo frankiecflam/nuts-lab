@@ -6,25 +6,28 @@ import Image from "next/image";
 import { formatPrice } from "../../utils/helpers/index";
 import { Button } from "../UI/index";
 import { useState, useEffect } from "react";
-import { useCartContext } from "../../context/CartContext";
-import { ProductDetailsRecommendations } from "./index";
 
 interface ProductDetailsContentProps {
   product: Product;
+  handleAddItemToCart: ({
+    product,
+    addToCartQty,
+  }: {
+    product: Product;
+    addToCartQty: number;
+  }) => void;
 }
 
-const ProductDetailsContent = ({ product }: ProductDetailsContentProps) => {
+const ProductDetailsContent = ({
+  product,
+  handleAddItemToCart,
+}: ProductDetailsContentProps) => {
   const [addToCartQty, setAddAddToCartQty] = useState(1);
-  const { addItem } = useCartContext();
 
   useEffect(() => {
     // reset addToCartQty if productId changes upon a page switch
     setAddAddToCartQty(1);
   }, [product.id]);
-
-  const handleAddItemToCart = () => {
-    addItem(product, addToCartQty);
-  };
 
   return (
     <>
@@ -79,7 +82,9 @@ const ProductDetailsContent = ({ product }: ProductDetailsContentProps) => {
                     type="button"
                     name="add to cart"
                     className={styles.productAddToCartBtn}
-                    onClick={handleAddItemToCart}
+                    onClick={() =>
+                      handleAddItemToCart({ product, addToCartQty })
+                    }
                   />
                 </footer>
               </div>
@@ -87,7 +92,6 @@ const ProductDetailsContent = ({ product }: ProductDetailsContentProps) => {
           </SectionBody>
         </Container>
       </Section>
-      <ProductDetailsRecommendations currentProductId={product.id} />
     </>
   );
 };

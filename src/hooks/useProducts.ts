@@ -16,19 +16,23 @@ export default function useProducts() {
   return useQuery(
     ["products"],
     () =>
-      axios.get("/api/products").then((res) => {
-        const { products } = res.data;
+      axios
+        .get(
+          "https://nuts-lab-default-rtdb.europe-west1.firebasedatabase.app/products.json"
+        )
+        .then((res) => {
+          const products = res.data;
 
-        let loadedProducts: any[] = [];
+          let loadedProducts: any[] = [];
 
-        for (const key in products) {
-          loadedProducts.push(products[key]);
-        }
+          for (const key in products) {
+            loadedProducts.push(products[key]);
+          }
 
-        const validatedProducts = Products.parse(loadedProducts);
+          const validatedProducts = Products.parse(loadedProducts);
 
-        return validatedProducts;
-      }),
+          return validatedProducts;
+        }),
     {
       onError: (error) => {
         console.log(
